@@ -1,0 +1,7 @@
+javaWorkspace/.metadata/
+**/.settings/
+**/bin/
+*.project
+*.classpath
+setup/
+javaWorkspace/발표용/

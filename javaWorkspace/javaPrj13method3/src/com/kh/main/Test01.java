@@ -32,8 +32,34 @@ public class Test01 {
 		int x = n+1;
 		return x;
 	}
+	
+	//입력값 O 리턴값 O
+	public int plus(int n , int m) {
+		int result = n + m;
+		return result;
+	}
+	
+	
 
-}
+}//class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

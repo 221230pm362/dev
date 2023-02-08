@@ -1,0 +1,41 @@
+-- 미니프로젝트
+
+-- MEMBER
+DROP TABLE MEMBER;
+CREATE TABLE MEMBER(
+    ID      VARCHAR2(100)   UNIQUE NOT NULL
+    , PWD     VARCHAR2(100) NOT NULL
+    , NICK    VARCHAR2(100)
+);
+
+
+-- BOARD
+DROP TABLE BOARD;
+CREATE TABLE BOARD(
+    TITLE           VARCHAR2(100)   NOT NULL
+    , CONTENT       VARCHAR2(4000)  NOT NULL
+    , WRITER        VARCHAR2(100)   
+    , ENROLL_DATE   TIMESTAMP
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

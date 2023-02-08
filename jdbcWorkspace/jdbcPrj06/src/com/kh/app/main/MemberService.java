@@ -3,6 +3,7 @@ package com.kh.app.main;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MemberService {
@@ -53,14 +54,60 @@ public class MemberService {
 		System.out.println(rs);
 		
 		//결과집합에서 데이터 꺼내기
-		rs.next();
-		String dbId = rs.getString("ID");
-		String dbPwd = rs.getString("PWD");
-		String dbNick = rs.getString("NICK");
-		
-		System.out.println(dbId);
-		System.out.println(dbPwd);
-		System.out.println(dbNick);
-	}
+		if(rs.next()) {
+			String dbId = rs.getString("ID");
+			String dbPwd = rs.getString("PWD");
+			String dbNick = rs.getString("NICK");
 
-}
+			System.out.println(dbId);
+			System.out.println(dbPwd);
+			System.out.println(dbNick);
+		}
+		
+	}
+	
+	public void selectMemberList(Connection conn) throws Exception {
+		
+		String sql = "SELECT * FROM MEMBER";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			String dbId = rs.getString("ID");
+			String dbPwd = rs.getString("PWD");
+			String dbNick = rs.getString("NICK");
+			
+			System.out.println(dbId + " / " + dbNick);
+		}
+		
+	}
+	
+
+}//class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

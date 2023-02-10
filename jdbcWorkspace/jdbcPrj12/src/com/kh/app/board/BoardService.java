@@ -25,7 +25,7 @@ public class BoardService {
 		String content = Main.sc.nextLine();
 		
 		//SQL 실행
-		String sql = "INSERT INTO BOARD(TITLE, CONTENT, WRITER, ENROLL_DATE) VALUES(?,?,?,SYSDATE)";
+		String sql = "INSERT INTO BOARD(NO, TITLE, CONTENT, WRITER, ENROLL_DATE) VALUES(SEQ_BOARD_NO.NEXTVAL,?,?,?,SYSDATE)";
 		Connection conn = JdbcTemplate.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, title);

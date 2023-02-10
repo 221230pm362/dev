@@ -19,7 +19,7 @@ public class MemberService {
 		
 		//insert
 		Connection conn = JdbcTemplate.getConnection();
-		String sql = "INSERT INTO MEMBER(ID,PWD,NICK) VALUES(?,?,?)";
+		String sql = "INSERT INTO MEMBER(NO,ID,PWD,NICK) VALUES(SEQ_MEMBER_NO.NEXTVAL,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, data.getMemberId());
 		pstmt.setString(2, data.getMemberPwd());

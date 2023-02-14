@@ -89,6 +89,14 @@ LEFT JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_ID
         테이블의 행들이 모두 곱해진 행들의 조합이 출력 -> 과부화의 위험
 */
 
+SELECT * FROM EMPLOYEE;     --23
+SELECT * FROM DEPARTMENT;   --9
+
+SELECT *
+FROM EMPLOYEE
+CROSS JOIN DEPARTMENT
+;
+
 
 /*
     5. 비등가 조인(NON EQUAL JOIN)
@@ -98,14 +106,89 @@ LEFT JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_ID
         ANSI 구문으로는 JOIN ON 구문으로만 사용이 가능하다. (USING 사용 불가)
 */
 
+SELECT EMP_NAME, SALARY , SAL_LEVEL , MIN_SAL, MAX_SAL
+FROM EMPLOYEE E
+JOIN SAL_GRADE S ON (E.SALARY BETWEEN S.MIN_SAL AND S.MAX_SAL)
+;
+
+
 /*
     6. 자체 조인(SELF JOIN)
         같은 테이블을 다시 한번 조인하는 경우에 사용한다.
 */
 
+SELECT 
+    A.EMP_ID
+    , A.EMP_NAME
+    , A.MANAGER_ID
+    , B.EMP_NAME
+FROM EMPLOYEE A
+JOIN EMPLOYEE B 
+ON A.MANAGER_ID = B.EMP_ID
+;
+
+SELECT EMP_ID, EMP_NAME, MANAGER_ID
+FROM EMPLOYEE
+;
 
 
 
+------------------------- 종합 실습 문제 -------------------------
+-- 1. 직급이 대리이면서 ASIA 지역에서 근무하는 직원들의 사번, 사원명, 직급명, 부서명, 근무지역, 급여를 조회하세요.
+SELECT EMP_ID, EMP_NAME, JOB_NAME, DEPT_TITLE, LOCAL_NAME, SALARY
+FROM EMPLOYEE E
+JOIN JOB J ON (E.JOB_CODE = J.JOB_CODE)
+JOIN DEPARTMENT D ON (E.DEPT_CODE = D.DEPT_ID)
+JOIN LOCATION L ON (D.LOCATION_ID = L.LOCAL_CODE)
+WHERE JOB_NAME = '대리'
+AND   LOCAL_NAME LIKE 'ASIA%'
+;
+
+-- 2. 70년대생 이면서 여자이고, 성이 전 씨인 직원들의 사원명, 주민번호, 부서명, 직급명을 조회하세요.
+SELECT EMP_NAME, EMP_NO, DEPT_TITLE, JOB_NAME
+FROM EMPLOYEE E
+JOIN DEPARTMENT D ON (E.DEPT_CODE = D.DEPT_ID)
+JOIN JOB J ON (E.JOB_CODE = J.JOB_CODE)
+WHERE EMP_NO LIKE '7%'
+AND   SUBSTR(EMP_NO,8,1) = 2
+AND   EMP_NAME LIKE '전%'
+;
+
+-- 3. 보너스를 받는 직원들의 사원명, 보너스, 연봉, 부서명, 근무지역을 조회하세요.
+-- 단, 부서 코드가 없는 사원도 출력될 수 있게
+SELECT 
+    EMP_NAME
+    , BONUS
+    , SALARY * 12 + SALARY*BONUS 연봉
+    , DEPT_TITLE
+    , LOCAL_NAME
+FROM EMPLOYEE E
+LEFT JOIN DEPARTMENT D ON (E.DEPT_CODE = D.DEPT_ID)
+JOIN LOCATION L ON (D.LOCATION_ID = L.LOCAL_CODE)
+WHERE BONUS IS NOT NULL
+;
+
+-- 4. 한국과 일본에서 근무하는 직원들의 사원명, 부서명, 근무지역, 근무 국가를 조회하세요.
+
+-- 5. 각 부서별 평균 급여를 조회하여 부서명, 평균 급여(정수 처리)를 조회하세요.
+--    단, 부서 배치가 안된 사원들의 평균도 같이 나오게
+
+-- 6. 각 부서별 총 급여의 합이 1000만원 이상인 부서명, 급여의 합을 조회하시오.
+
+-- 7. 사번, 사원명, 직급명, 급여 등급, 구분을 조회
+--    이때 구분에 해당하는 값은 아래와 같이 조회 되도록 하시오.
+--    급여 등급이 S1, S2인 경우 '고급'
+--    급여 등급이 S3, S4인 경우 '중급'
+--    급여 등급이 S5, S6인 경우 '초급'
+
+
+-- 8. 보너스를 받지 않는 직원들 중 직급 코드가 J4 또는 J7인 직원들의 사원명, 직급명, 급여를 조회하시오.
+
+-- 9. 부서가 있는 직원들의 사원명, 직급명, 부서명, 근무 지역을 조회하시오.
+
+-- 10. 해외영업팀에 근무하는 직원들의 사원명, 직급명, 부서 코드, 부서명을 조회하시오
+
+-- 11. 이름에 '형'자가 들어있는 직원들의 사번, 사원명, 직급명을 조회하시오.
 
 
 

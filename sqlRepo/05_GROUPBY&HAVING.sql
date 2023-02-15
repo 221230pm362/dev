@@ -123,6 +123,46 @@ ORDER BY  "직급별 인원 수" ASC
 ;
 
 
+/*
+    <집합 연산자>
+        여러 개의 쿼리문을 가지고 하나의 쿼리문으로 만드는 연산자이다.
+        
+        UNION       : 두 쿼리문을 수행한 결과값을 더한 후 중복되는 행은 제거한다. (합집합)
+        UNION ALL   : UNION과 동일하게 두 쿼리문을 수행한 결과값을 더하고 중복은 허용한다. (합집합)
+        INTERSECT   : 두 쿼리문을 수행한 결과값에 중복된 결과값만 추출한다. (교집합)
+        MINUS       : 선행 쿼리의 결과값에서 후행 쿼리의 결과값을 뺀 나머지 결과값만 추출한다. (차집합)
+*/
+
+-- 1. UNION
+-- 부서코드가 D5인 사원 의        이름,부서코드,급여
+-- 급여가 300만원 초과인 사원의    이름,부서코드,급여
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D5'
+
+MINUS
+
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE SALARY > 3000000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

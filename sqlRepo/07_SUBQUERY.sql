@@ -184,8 +184,98 @@ WHERE (JOB_CODE,SALARY) IN  (
         FROM 절에 서브 쿼리를 제시하고, 서브 쿼리를 수행한 결과를 테이블 대신 사용한다.
 */
 
+SELECT 사번,이름
+FROM 
+(
+    SELECT EMP_ID AS 사번 ,EMP_NAME AS 이름
+    FROM EMPLOYEE
+)
+;
+
+-- 급여 높은 상위 5명 조회
+SELECT ROWNUM , EMP_NAME, SALARY
+FROM EMPLOYEE
+--ORDER BY SALARY DESC
+;
+
+SELECT ROWNUM, EMP_NAME, SALARY
+FROM 
+(
+    SELECT *
+    FROM EMPLOYEE
+    ORDER BY SALARY DESC
+)
+WHERE ROWNUM <= 5
+;
+
+-- 부서별 평균급여가 높은 3개 부서의 부서코드,평균급여 조회
+SELECT ROWNUM , 부서 , 평균급여
+FROM 
+(
+    SELECT 
+        NVL(DEPT_CODE , '부서없음') AS 부서
+        , AVG(NVL(SALARY , 0)) AS 평균급여
+    FROM EMPLOYEE
+    GROUP BY DEPT_CODE
+    ORDER BY 평균급여 DESC
+)
+WHERE ROWNUM < 3
+;
+
+-- WITH
+WITH ABC AS (
+    SELECT 
+        NVL(DEPT_CODE , '부서없음') AS 부서
+        , AVG(NVL(SALARY , 0)) AS 평균급여
+    FROM EMPLOYEE
+    GROUP BY DEPT_CODE
+    ORDER BY 평균급여 DESC
+)
+
+SELECT ROWNUM , 부서 , 평균급여
+FROM ABC
+WHERE ROWNUM <= 3
+;
+
+/*
+    <RANK 함수>
+        [표현법]
+            RANK() OVER(정렬 기준) / DENSE_RANK() OVER(정렬 기준)
+        
+         RANK() OVER(정렬 기준)         : 동일한 순위 이후의 등수를 동일한 인원수만큼 건너뛰고 순위를 계산한다.
+                                         (EX. 공동 1위가 2명이면 다음 순위는 3위)
+         DENSE_RANK() OVER(정렬 기준)   : 동일한 순위 이후의 등수를 무조건 1씩 증가한다.
+                                         (EX. 공동 1위가 2명이면 다음 순위는 2위)
+*/
+
+-- 사원별 급여가 높은 순서대로 순위를 매겨서 순위,이름,급여 조회
+SELECT 
+    DENSE_RANK() OVER(ORDER BY SALARY DESC) 순위
+    , EMP_NAME
+    , SALARY
+FROM EMPLOYEE
+;
 
 
+
+
+-- ROWNUM 을 이용하여 3등 이후 순위 조회
+SELECT *
+FROM 
+(
+    SELECT ROWNUM R , 부서 , 평균급여
+    FROM 
+    (
+        SELECT 
+            NVL(DEPT_CODE , '부서없음') AS 부서
+            , AVG(NVL(SALARY , 0)) AS 평균급여
+        FROM EMPLOYEE
+        GROUP BY DEPT_CODE
+        ORDER BY 평균급여 DESC
+    )
+)
+WHERE R > 3
+;
 
 
 

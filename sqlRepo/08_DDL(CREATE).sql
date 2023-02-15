@@ -24,12 +24,14 @@
 
 DROP TABLE MEMBER;
 CREATE TABLE MEMBER(
-    ID           VARCHAR2(100) NOT NULL UNIQUE
+    NO           --PRIMARY KEY
+    , ID         VARCHAR2(100) NOT NULL UNIQUE
     ,PWD         VARCHAR2(100) NOT NULL
     ,NICK        VARCHAR2(100)
     ,QUIT_YN     CHAR(10)      DEFAULT 'N'
     ,ENROLL_DATE TIMESTAMP     DEFAULT SYSDATE
     ,GENDER      CHAR(1)       CHECK( GENDER IN ('M','F') )
+    ,CONSTRAINT MEMBER_PK PRIMARY KEY (NO,ID)
 );
 
 /*
@@ -108,11 +110,47 @@ SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'MEMBER';
         여러 칼럼을 묶어서 설정하는것도 가능 (반드시 테이블 레벨 방식으로 설정)
 */
 
+/*
+    <CHECK 제약조건>
+        칼럼에 기록되는 값에 조건을 설정하고 조건을 만족하는 값만 기록할 수 있다.
+        비교 값은 리터럴만 사용 가능하다.(변하는 값이나 함수 사용하지 못한다.)
+        
+        [문법]
+            CHECK(비교연산자)
+                CHECK(칼럼 [NOT] IN(값, 값, ...))
+                CHECK(칼럼 = 값)
+                CHECK(칼럼 BETWEEN 값 AND 값)
+                CHECK(칼럼 LIKE '_문자' OR 칼럼 LIKE '문자%')
+                ...
+*/
 
+/*
+    <PRIMARY KEY(기본 키) 제약조건>
+        테이블에서 한 행의 정보를 식별하기 위해 사용할 칼럼에 부여하는 제약조건이다.
+        각 행들을 구분할 수 있는 식별자 역할(사번, 부서 코드, 직급 코드, ..)
+        기본 키 제약조건을 설정하게 되면 자동으로 해당 칼럼에 NOT NULL + UNIQUE 제약조건이 설정된다.
+        한 테이블에 한 개만 설정할 수 있다.(단, 한 개 이상의 칼럼을 묶어서 PRIMARY KEY로 제약조건을 설정할 수 있다.)
+        칼럼 레벨, 테이블 레벨 방식 모두 설정 가능하다.
+*/
 
-
-
-
+/*
+    <FOREIGN KEY(외래 키) 제약조건>
+        다른 테이블에 존재하는 값만을 가져야 하는 칼럼에 부여하는 제약조건이다.(단, NULL 값도 가질 수 있다.)
+        즉, 참조된 다른 테이블이 제공하는 값만 기록할 수 있다. (FOREIGN KEY 제약조건에 의해서 테이블 간에 관계가 형성된다.)
+        
+        [표현법]
+            1) 칼럼 레벨
+                칼럼명 자료형(크기) [CONSTRAINT 제약조건명] REFERENCES 참조할테이블명 [(기본키)] [삭제룰]
+                
+            2) 테이블 레벨
+                [CONSTRAINT 제약조건명] FOREIGN KEY(컬럼명) REFERENCES 참조할테이블명 [(기본키)] [삭제룰]
+                
+        [삭제룰]
+            부모 테이블의 데이터가 삭제됐을 때의 옵션을 지정해 놓을 수 있다.
+            1) ON DELETE RESTRICT : 자식 테이블의 참조 키가 부모 테이블의 키 값을 참조하는 경우 부모 테이블의 행을 삭제할 수 없다. (기본적으로 적용되는 옵션)
+            2) ON DELETE SET NULL : 부모 테이블의 데이터가 삭제 시 참조하고 있는 자식 테이블의 컬럼 값이 NULL로 변경된다.
+            3) ON DELETE CASCADE  : 부모 테이블의 데이터가 삭제 시 참조하고 있느 자식 테이블의 컴럼 값이 존재하는 행 전체가 삭제된다.
+*/
 
 
 

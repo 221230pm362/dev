@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼태그</title>
+</head>
+<body>
+    <h1>폼태그</h1>
+
+    <!-- 
+        사용자가 입력할 수 있는 양식을 제공
+        서버측에 요청을 보냄
+        (폼태그 내의 input태그들을 서버측에 전달)
+
+        * 속성
+            action : 요청을 보낼 서버 경로
+            method : 요청을 보낼 방식 (get , post)
+                get : URL 에 노출 시켜서 전달
+                post : URL 에 노출 시키지 않고 전달
+            autocomplete : 자동완성 (deafult:on , 태그별로 지정 가능)
+     -->
+
+     <h2>기본 구조</h2>
+
+     <form action="요청을보낼서버경로" autocomplete="off">
+        
+        아이디 : <input type="text" name="memberId">
+        <br>
+        비밀번호 : <input type="password" name="memberPwd">
+        <br>
+        닉네임 : <input type="text" name="memberNick">
+        <br>
+        나이 : <input type="number" name="memberAge">
+        <br>
+        <input type="submit" value="회원가입">
+
+     </form>
+
+</body>
+</html>

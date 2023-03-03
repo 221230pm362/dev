@@ -1,0 +1,122 @@
+.box{
+    background-color: gray;
+    width: 100px;
+    height: 100px;
+
+    border: 5px solid black;
+    /* border-width: 5px;
+    border-color: red;
+    border-style: solid; */
+
+    display: inline-block;
+
+    padding: 10px;
+    margin: 30px;
+
+    box-shadow: -5px -5px 35px 5px gray;
+
+    border-radius: 50px;
+}
+
+#t1{background-color: red;}
+#t2{background-color: blue;}
+#t3{background-color: green;}
+#t4{background-color: pink;}
+#t5{background-color: orange;}
+
+
+
+
+/* 포지셔닝 */
+
+.outer{
+    width: 600px;
+    height: 600px;
+    border: 5px dashed pink;
+    position: relative;
+}
+
+#div01{
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
+
+#div02{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+#div03{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
+
+
+#fixed-test{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    /* position: sticky;
+    top: 100px;
+    left: 100px; */
+    /* visibility: hidden; */
+    display: none;
+}
+
+#vt{
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+}
+
+#zt01{
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+}
+
+#zt02{
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 2000;
+}
+
+#zt03{
+    width: 300px;
+    height: 300px;
+    background-color: green;
+    position: absolute;
+    top: 200px;
+    left: 200px;
+}
+
+table{
+    width: 400px;
+    height: 300px;
+    border: 1px solid black;
+    border-spacing: 25px;
+    /* border-collapse: collapse; */
+    empty-cells: hide;
+    table-layout: fixed;
+    word-break: break-all;
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}

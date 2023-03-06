@@ -1,0 +1,16 @@
+#wrap {
+    width: 500px;
+    height: 500px;
+    border: 10px dashed black;
+
+    display: flex;
+    /* align-items: center;
+    justify-content: space-evenly; */
+}
+
+#wrap > div {
+    border: 1px solid gray;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+}

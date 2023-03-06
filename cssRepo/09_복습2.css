@@ -1,0 +1,31 @@
+body {
+    background-color: gray;
+    margin: 0px;
+}
+
+#header {
+    width: 60%;
+    height: 200px;
+    background-color: green;
+    margin : auto;
+}
+
+#nav {
+    height: 100px;
+    background-color: pink;
+}
+
+#nav > div {
+    width: 300px;
+    height: 100%;
+    border: 3px solid darkgray;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 250px;
+    text-align: center;
+}
+
+#nav > div > a {
+    vertical-align: top;
+    line-height: 100px;
+}

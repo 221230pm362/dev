@@ -1,0 +1,25 @@
+#outer {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    border: 5px solid black;
+    
+    display: flex;
+    /* flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center; */
+}
+
+#outer > div {
+    width: 100px;
+    height: 100px;
+    border: 1px dashed gray;
+    box-sizing: border-box;
+}
+
+#outer > div:nth-child(2) {
+    align-self: center;
+    order: -1;
+}

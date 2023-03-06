@@ -1,0 +1,30 @@
+body{
+    margin: 0px;
+    background-color: gray;
+}
+
+#header {
+    background-color: green;
+    width: 60%;
+    height: 200px;
+    margin: auto;
+}
+
+#nav {
+    background-color: pink;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#nav > div {
+    width: 100px;
+    height: 100%;
+    border: 3px solid darkgray;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

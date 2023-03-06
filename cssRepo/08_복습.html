@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        #div01{background-color: red;}
+        #div02{background-color: blue;}
+        #div03{background-color: green;}
+
+        #wrapper > div {
+            position: absolute;
+        }
+
+        #item01{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+
+        #item02{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+
+        #item03{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+
+
+        #test{
+            width: 350px;
+            height: 350px;
+            border: 10px dotted black;
+            box-sizing: border-box;
+            margin-top: 400px;
+            position: relative;
+        }
+
+        #test > div {
+            width: 300px;
+            height: 300px;
+            background-color: gray;
+            position: absolute;
+        }
+
+        #test > div:nth-child(1) {
+            background-color: red;
+            top:0px;
+            left: 0px;
+        }
+
+        #test > div:nth-child(2) {
+            background-color: blue;
+            top:100px;
+            left: 100px;
+            z-index: 10;
+        }
+
+        #test > div:nth-child(3) {
+            background-color: green;
+            top:200px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>복습</h1>
+
+    <hr>
+
+    <div class="box" id="div01"></div>
+    <div class="box" id="div02"></div>
+    <div class="box" id="div03"></div>
+
+    <hr>
+
+    <div id="wrapper">
+        <div class="item" id="item01"></div>
+        <div class="item" id="item02"></div>
+        <div class="item" id="item03"></div>
+    </div>
+
+    <hr>
+
+    <div id="test">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+</body>
+</html>

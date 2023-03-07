@@ -1,0 +1,17 @@
+#nav{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100px;
+    font-size: 48px;
+
+    place-items: center center;
+}
+
+.sub-menu {
+    display: none;
+}
+
+#d01:hover > .sub-menu {
+    display: block;
+    background-color: red;
+}

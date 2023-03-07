@@ -1,0 +1,17 @@
+table{
+    width: 800px;
+    height: 300px;
+    /* border-spacing: 100px; */
+    border-collapse: collapse;
+
+    margin: auto;
+}
+
+td , th {
+    border: 1px solid black;
+    height: 50px;
+}
+
+tbody > tr:hover {
+    background-color: lightgray;
+}

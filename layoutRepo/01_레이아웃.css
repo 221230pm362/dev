@@ -1,0 +1,55 @@
+div{
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrap {
+    width: 900px;
+    height: 800px;
+    border: 1px solid red;
+}
+
+#header {
+    height: 150px;
+}
+
+#nav {
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+}
+
+#nav > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    height: 450px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#container > div:nth-child(1) {
+    width: 150px;
+}
+
+#container > div:nth-child(2) {
+    width: 600px;
+}
+
+#container > div:nth-child(3) {
+    width: 150px;
+}
+
+#footer {
+    height: 100px;
+}

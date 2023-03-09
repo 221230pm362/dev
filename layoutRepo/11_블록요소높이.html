@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블록요소 높이</title>
+    <style>
+
+        #outer {
+            border: 5px solid black;
+        }
+
+        #outer > div {
+            width: 100px;
+            height: 100px;
+            border: 1px dashed red;
+        }
+
+        #outer > div:nth-child(2) {
+            position: sticky;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>블록요소 높이</h1>
+
+    <div id="outer">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+</body>
+</html>

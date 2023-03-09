@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습2</title>
+    <style>
+        #target{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1 id="temp">복습2</h1>
+    <button onclick="changeColor();">유저가 입력한 색으로 글자 색 변경</button>
+
+    <script>
+        function changeColor(){
+            // 유저 입력 받기
+            str = prompt();
+
+            // 요소 가져오기
+            x = document.querySelector('#temp');
+
+            // 요소 속성 변경
+            x.style.color = str;
+        }
+    </script>
+
+    <hr>
+
+    <div id="target">타겟</div>
+    <button>유저가 입력한 사이즈로 변경</button>
+    <!-- 
+        버튼 클릭 시, 유저로부터 숫자 입력받기
+        그 숫자를 이용해서 타겟 요소의 가로 세로 사이즈 지정
+     -->
+
+</body>
+</html>

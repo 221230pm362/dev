@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 개요</title>
+</head>
+<body>
+    
+    <h1>자바스크립트 개요</h1>
+
+    <hr>
+
+    <!-- 
+                웹 브라우저에서 많이 사용되는 인터프리터 방식의 스크립트 언어(함수, 객체지향)
+            - 인터프리터 방식 : 컴파일 과정 없이 실행하면서 코드를 하나씩 읽어내는 방식이다. 
+            (코드에 문법에 오류가 있으면 실행 시점에 알 수 있다.)
+    -->
+
+    <h2>사용법</h2>
+
+    <h3>인라인 (inline)</h3>
+    <button onclick='alert("hello World");'>버튼ㅋㅋ(인라인테스트)</button>
+
+    <h3>내부 (internal)</h3>
+    <script>
+       console.log("내부 스크립트를 통해 실행~~~");
+    </script>
+
+    <h3>외부 (external)</h3>
+    <script src="./01_개요.js"></script>
+
+    <hr>
+
+    <h2>데이터 입출력</h2>
+    <h3>1) 데이터 입력</h3>
+    <script>
+
+        //confirm : boolean 값을 받는다.
+        /*
+        x = window.confirm('JS공부를 열심히 하고싶다');
+        console.log(x);
+
+        if(x){
+            console.log("저두요 ㅎㅎ");
+        }else{
+            console.log("...ㅠㅠ");
+        }
+        */
+
+        //prompt : string 값을 받는다.
+        // x = prompt("당신의 이름은?");
+        // console.log(x);
+
+    </script>
+
+    <hr>
+
+    <h3>2) 데이터 출력</h3>
+    <script>
+        //console.log();
+        //alert();
+
+        document.write('<h1>안녕ㅋㅋ내가 만든 글씨 ~</h1>');
+
+    </script>
+
+
+    <hr>
+
+    <h2>요소 선택</h2>
+
+    <div class="box">얖</div>
+    <div class="box" id="target">얖</div>
+    <div class="box">얖</div>
+
+    <script>
+
+        //태그명 으로 요소 선택
+        x = document.getElementsByTagName('h1');
+        console.log(x);
+        
+        //클래스명 으로 요소 선택
+        x = document.getElementsByClassName('box');
+        console.log(x);
+        
+        //아이디 로 요소 선택
+        x = document.getElementById('target');
+        console.log(x);
+
+        //=====================================
+        console.log("========================");
+
+        //태그명
+        x = document.querySelectorAll('h1');
+        console.log(x);
+
+        //클래스명
+        x = document.querySelectorAll('.box');
+        console.log(x);
+
+        //아이디
+        x = document.querySelector('#target');
+        console.log(x);
+
+    </script>
+
+
+    
+
+</body>
+</html>

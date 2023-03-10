@@ -32,11 +32,30 @@
     <hr>
 
     <div id="target">타겟</div>
-    <button>유저가 입력한 사이즈로 변경</button>
+    <button onclick="changeSize();">유저가 입력한 사이즈로 변경</button>
     <!-- 
         버튼 클릭 시, 유저로부터 숫자 입력받기
         그 숫자를 이용해서 타겟 요소의 가로 세로 사이즈 지정
-     -->
+    -->
+
+    <script>
+
+        function changeSize(){
+            //사이즈 입력받기
+            str = prompt();
+
+            // 요소 가져오기
+            x = document.querySelector('#target');
+
+            // 요소 다루기
+            x.style.width = str + "px";
+            x.style.height = str + "px";
+        }
+
+        
+
+    </script>
+
 
 </body>
 </html>

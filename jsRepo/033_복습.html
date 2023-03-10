@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습</title>
+</head>
+<body>
+    
+    <h1>복습</h1>
+
+    <script>
+        //아이디가 target 인 요소의 배경색 빨간색으로 변경
+    </script>
+
+    <hr>
+
+    <div>div01</div>
+    <div>div02</div>
+    <div>div03</div>
+
+    <script>
+        // 현재 문서의 모든 div 요소 배경 색 변경
+
+        // div 들 전부 가져오기
+        x = document.querySelectorAll('div');
+        console.log(x);
+
+        // 요소들 색상 변경
+        x[0].style.backgroundColor = "red";
+        x[1].style.backgroundColor = "blue";
+        x[2].style.backgroundColor = "green";
+
+    </script>
+
+    <hr>
+
+    <div class="gray">얖</div>
+    <div class="gray">얖</div>
+    <div class="gray">얖</div>
+    <div class="gray">얖</div>
+    <div class="gray">얖</div>
+
+    <script>
+        //클래스가 gray 인 요소들 배경색을 회색 으로 변경
+
+        //클래스가 gray 요소들 전부 가져오기
+        arr = document.querySelectorAll('.gray');
+
+        //요소들의 색 변경
+        for(let i = 0 ; i < arr.length; ++i){
+            arr[i].style.backgroundColor = "gray";
+        }
+    </script>
+
+    <hr>
+
+    <input type="text">
+    <button onclick="f01();">클릭ㅋㅋ</button>
+    <div id="temp">색상변경할디브</div>
+
+    <script>
+        function f01(){
+            //인풋태그 가져오기
+            x = document.querySelector("input");
+
+            //value 를 알람으로 띄우기
+            alert(x.value);
+
+            //div 요소 가져오기
+            const temp = document.querySelector("#temp");
+
+            //div 요소 제어하기
+            temp.style.backgroundColor = x.value;
+        }
+    </script>
+
+    <hr>
+
+    <input type="color">
+    <button onclick="changeColor();">색 변경하기</button>
+    <div id="temp2">템프2</div>
+    
+    <script>
+
+        function changeColor(){
+
+            c = document.querySelector("input[type=color]");
+            
+            x = document.querySelector("#temp2");
+            x.style.backgroundColor = c.value;
+        }
+
+    </script>
+
+    <hr>
+
+    <span id="s01">스팬01</span>
+
+    <script>
+
+        s01 = document.querySelector("#s01");
+
+        console.log( s01.innerText );
+
+        s01.innerHTML = "<h1>js로 만든 글씨 ~~~</h1>";
+
+    </script>
+
+    <hr>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>복습</h1>
+
+    <button id="btn01">빨강</button>
+    <button id="btn02">파랑</button>
+    <button id="btn03">초록</button>
+
+    <script>
+        const h1 = document.querySelectorAll("h1")[0];
+
+        const btn01 = document.querySelector("#btn01");
+        const btn02 = document.querySelector("#btn02");
+        const btn03 = document.querySelector("#btn03");
+
+        btn01.addEventListener("click" , f01);
+        btn02.addEventListener("click" , f02);
+        btn03.addEventListener("click" , f03);
+
+        function f01(){h1.style.backgroundColor = "red";}
+        function f02(){h1.style.backgroundColor = "blue";}
+        function f03(){h1.style.backgroundColor = "green";}
+
+    </script>
+
+
+    <hr>
+
+
+    <button id="b01">버튼</button>
+    <br>
+    <input type="text" id="input01">
+    <br>
+    <div id="div01">여기</div>
+    <br>
+    <span id="span01">여기</span>
+
+    <script>
+        const b01 = document.querySelector("#b01");
+        const input01 = document.querySelector("#input01");
+        const div01 = document.querySelector("#div01");
+        const span01 = document.querySelector("#span01");
+
+        b01.addEventListener('click' , ()=>{
+            const msg = prompt("메세지를 입력하세요");
+
+            input01.value = msg;
+            div01.innerHTML = msg;
+            span01.innerHTML = msg;
+        } );
+    </script>
+
+
+    <hr>
+
+    <div class="temp">1</div>
+    <div class="temp">2</div>
+    <div class="temp">3</div>
+
+    <script>
+
+        const tempArr = document.querySelectorAll(".temp");
+        var i;
+        for(let i = 0 ; i < tempArr.length; i++){
+            tempArr[i].addEventListener("click" , function(event){
+                alert(event.target.innerHTML);
+            });
+        }
+
+    </script>
+
+    <hr>
+
+    <table border="1">
+        <tr>
+            <td>셀01</td>
+            <td>셀02</td>
+            <td>셀03</td>
+        </tr>
+        <tr>
+            <td>셀04</td>
+            <td>셀05</td>
+            <td>셀06</td>
+        </tr>
+        <tr>
+            <td>셀07</td>
+            <td>셀08</td>
+            <td>셀09</td>
+        </tr>
+    </table>
+
+    <script>
+        const table = document.querySelector("table");
+
+        table.addEventListener("click" , function(event){
+            alert(event.target.innerHTML);
+            document.querySelector("#board-no").value = event.target.innerHTML;
+        });
+    </script>
+
+    <input type="text" id="board-no">
+
+</body>
+</html>

@@ -69,6 +69,11 @@ window.onload = function(){
             console.log(`${k} : ${p[k]}`);
         }
 
+        // 객체의 value 는 iterable 하지 않으므로 접근 불가
+        // for(let v of p){
+        //     console.log(v);
+        // }
+
     });
 
     //객체의 속성 추가 및 제거
@@ -112,7 +117,74 @@ window.onload = function(){
         console.log(arr);
     });
 
+    //생성자 함수
+     const btn06 = document.querySelector("#btn06");
+     btn06.addEventListener("click" , function(){
+        
+        function Pokemon(name , atk, def){
+            this.name = name;
+            this.atk = atk;
+            this.def = def;
+            //메소드
+            // this.getName = function(){
+            //     return this.name;
+            // };
+            // this.setName = function(str){
+            //     this.name = str;
+            // };
+        }//생성자 함수
 
-    
+        Pokemon.prototype.getName = function(){
+            return this.name;
+        };
+        Pokemon.prototype.setName = function(str){
+            this.name = str;
+        };
+
+        Pokemon.prototype.age = 20;
+        Pokemon.prototype.name = '포켓몬기본이름';
+
+        const x = new Pokemon("피카츄" , 100, 200);
+        console.log(x);
+
+        x.setName("파이리");
+        console.log( x.getName() );
+
+        console.log(x.__proto__.name);
+
+        console.log("!!!!");
+        console.log(Pokemon.name);
+
+        // temp = Object.getPrototypeOf(x);
+        // console.log(temp);
+
+        // console.log("-------------");
+        // console.log(Pokemon.prototype.name);
+        // Pokemon.prototype.name = "zzz";
+        // console.log(x.__proto__.name);  
+
+     });
+
+     //캡슐화
+     const btn07 = document.querySelector("#btn07");
+     btn07.addEventListener("click" , function(){
+        
+        function Person(n, a){
+            let name = n;
+            let age = a;
+
+            this.getName = function(){return name;};
+            this.setName = function(str){name = str};
+        }
+
+        const p = new Person("심원용" , 20);
+
+        console.log(p);
+        console.log( p.getName() );
+        p.setName("심투용");
+        console.log( p.getName() );
+
+     });
+
 
 }; //onload function

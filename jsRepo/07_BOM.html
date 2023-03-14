@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+    <script defer src="./07_BOM.js"></script>
+</head>
+<body>
+    
+    <h1>BOM (Browser Object Model) </h1>
+
+    <hr>
+
+    <h2>window 객체</h2>
+    <pre>
+        window 객체는 자바스크립트의 최상위 객체이며, 브라우저 내의 모든 요소들과 객체를 포함한다.
+        BOM : location 객체, navigator 객체, history 객체, screen 객체
+        DOM : document 객체
+    </pre>
+
+    <h3>1) window.open() </h3>
+    <button id="btn1">테스트</button>
+
+    <h3>2) 타이머 </h3>
+    <h4>window.setTimeout()</h4>
+    <pre>
+        일정 시간 이후 동작
+    </pre>
+    <button id="btn2">테스트</button>
+
+    <h4>window.setInterval()</h4>
+    <pre>
+        일정 시간 간격 동작
+    </pre>
+    <button id="btn3">테스트(시작)</button>
+    <button id="btn4">테스트(종료)</button>
+
+    <h2>BOM 객체</h2>
+
+    <h3>1) location</h3>
+    <pre>
+        브라우저 주소표시줄 관련 객체
+
+        reload()    : 새로고침
+        href        : URL 이동
+        assign()    : 페이지 이동 
+        replace()   : 페이지 이동 (기존 페이지를 대체, 히스토리에 기존페이지가 남지않음)
+    </pre>
+    <button id="btn01">테스트</button>
+
+    <h3>2) history</h3>
+    <pre>
+        브라우저 방문 기록 관련 객체
+    </pre>
+    <button onclick="history.back();">back()</button>
+    <button onclick="history.forward();">forward()</button>
+
+    <button onclick="history.go(-1);">go(-1)</button>
+    <button onclick="history.go(1);">go(1)</button>
+
+    <h3>3) navigator</h3>
+    <pre>
+        브라우저 정보를 담고있는 객체
+    </pre>
+    <button id="btn02">테스트</button>
+
+    <h3>4) screen</h3>
+    <pre>
+        운영체제의 화면(모니터) 정보를 가지고있는 객체
+    </pre>
+    <button onclick="console.log(screen);">테스트</button>
+
+</body>
+</html>

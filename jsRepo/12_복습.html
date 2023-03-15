@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList</title>
+    <style>
+        .red{background-color: red;}
+        .blue{background-color: blue;}
+        .green{background-color: green;}
+    </style>
+</head>
+<body>
+    
+    <h1>classList</h1>
+
+    <hr>
+
+    <div id="div01" class="box wrap area">얖</div>
+    <div id="div02">얖</div>
+    <div id="div03">얖</div>
+
+    <button onclick="addRedClass();">추가</button>
+    <button onclick="removeRedClass();">제거</button>
+    <button onclick="toggleRedClass();">토글</button>
+
+    <script>
+        const div01 = document.querySelector("#div01");
+
+        function addRedClass(){
+            div01.classList.add("red");
+        }
+
+        function removeRedClass(){
+            div01.classList.remove("red");
+        }
+
+        function toggleRedClass(){
+            div01.classList.toggle("red");
+        }
+    </script>
+
+</body>
+</html>

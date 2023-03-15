@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습</title>
+</head>
+<body>
+    
+    <h1>복습</h1>
+
+    아이디 <input type="text" name="memberId">
+    <button onclick="openNewTap();">중복검사</button>
+
+    <script>
+        function openNewTap(){
+            // 새 창 열기
+            const newTab = window.open("11_복습_팝업.html" , "abc" ,"width=500 , height=500, top=200, left=2000");
+            
+            setTimeout(()=>{
+                console.log(newTab.document);
+            } , 500);
+            
+        }
+    </script>
+
+</body>
+</html>

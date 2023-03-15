@@ -5,6 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이벤트</title>
+    <style>
+        div{
+            border: 1px solid black;
+            width: 50%;
+            height: 50%;
+        }
+
+        #div01{
+            width: 300px;
+            height: 300px;
+        }
+
+        #div01{background-color: red;}
+        #div02{background-color: blue;}
+        #div03{background-color: green;}
+    </style>
     <script defer src="09_이벤트.js"></script>
 </head>
 <body>
@@ -16,14 +32,92 @@
     <h2>1. 이벤트 모델 종류</h2>
 
     <h3>1) 고전 이벤트 모델</h3>
+    <pre>
+        요소 객체가 가지고 있는 이벤트 속성에 이벤트 핸들러를 연결하는 방법이다.
+        이벤트 객체를 제거할 수 있는데 제거하고자 한다면 해당 이벤트 속성 값에 null을 대입하면 된다.
+    </pre>
+    <button id="btn1">테스트</button>
+
     <h3>2) 인라인 이벤트 모델</h3>
+    <pre>
+        요소 내부에 이벤트 속성으로 실행 내용을 작성하는 방법이다.
+        단순한 코드의 경우엔 직접 코드를 입력을 해도 좋으나 
+        script 태그 내에 정의된 함수를 호출하는 방식을 선호한다.
+    </pre>
+    <button id="btn2" onclick="alert('인라인 이벤트 모델 ~~~');">테스트</button>
+
     <h3>3) 표준 이벤트 모델</h3>
+    <pre>
+        w3에서 공식적으로 지정한 이벤트 모델로 
+        한 번에 여러 개의 이벤트 핸들러 설정이 가능하다.
+    </pre>
+    <button id="btn3">테스트</button>
+
+    <hr>
 
     <h2>2. 이벤트가 발생한 요소에 접근하는 방법</h2>
+    <pre>
+        이벤트가 발생한 요소 객체는 
+				내부적으로 이벤트 발생 정보를 담고 있는 객체를 매개변수로 전달한다.
+        이벤트 객체를 통해서 해당 요소 객체에 접근이 가능하고 
+				콜백 함수의 종류에 따라 this로 접근이 가능하다.
+    </pre>
+    <button id="btn4">테스트</button>
 
     <h2>3. 태그별 기본 이벤트 제거</h2>
+    <pre>
+        기본 이벤트를 가지고 있는 요소 
+        a : 클릭 시 href 속성에 제시되어 있는 페이지를 요청하는 기본 이벤트 보유 
+        submit : 클릭 시 입력 양식 제출 후 페이지를 다시 로딩하는 기본 이벤트 보유 
+
+        기본 이벤트가 있는 요소에 onclick 이벤트를 설정하면 
+				이 코드가 우선적으로 먼저 실행되고 
+        그 다음에 기본 이벤트가 실행된다. 
+        태그에 기본적으로 설정되어 있는 이벤트를 제거하기 위해서는 
+				이벤트 핸들러의 return 값을 false로 하면 된다.
+    </pre>
+    <a href="https://www.naver.com" onclick="x = confirm('이동?'); return x;">네이버ㄱㄱ</a>
+
+    <h3>기본 이벤트 제거 1</h3>
+    <form onsubmit="return checkPwd();">
+        아이디 : <input type="text" name="memberId">
+        <br>
+        비밀번호 : <input type="password" name="memberPwd">
+        <br>
+        <!-- <input type="submit" value="회원가입" onclick="return checkPwd();"> -->
+        <input type="submit" value="회원가입">
+    </form>
+
+
+    <h3>기본 이벤트 제거 2</h3>
+    <form>
+
+        아이디 : <input type="text" name="memberId" id="temp">
+        <br>
+        비밀번호 : <input type="password" name="memberPwd">
+        <br>
+        <input type="submit" value="회원가입" id="t">
+
+    </form>
+
+
 
     <h2>0. 이벤트 전파 (버블링, 캡처링)</h2>
+    
+    <div id="div01">
+        <div id="div02">
+            <div id="div03"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 </body>
 </html>

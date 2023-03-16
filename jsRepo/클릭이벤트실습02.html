@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>충전할 별풍선 개수 선택</h1>
+    <button onclick="plus(1);">1개</button>
+    <button onclick="plus(10);">10개</button>
+    <button onclick="plus(100);">100개</button>
+    <button onclick="clean();">지우기</button>
+
+    <hr>
+
+    충전하실 별풍선 개수는 총
+    <input type="text">
+    개 입니다.
+
+    <script>
+
+        const result = document.querySelector("input");
+
+        function plus(cnt){
+            const v = isNaN(parseInt(result.value)) ? 0 : result.value;
+            result.value = parseInt(v)+cnt;
+        }
+
+        function clean(){
+            result.value = '';
+        }
+
+    </script>
+
+</body>
+</html>

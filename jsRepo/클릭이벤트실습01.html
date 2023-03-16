@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>주문할 상품 갯수</h1>
+    <input type="number"> 개
+    <hr>
+    <button onclick="f01();">확인</button>
+    <hr>
+    <input type="number"> 원
+
+    <script>
+        //물건 가격 : 2500원 이라고 가정
+        const arr = document.querySelectorAll('input');
+        
+        function f01(){
+            arr[1].value = arr[0].value * 2500;
+        }
+    </script>
+    
+</body>
+</html>

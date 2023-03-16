@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트_폼</title>
+</head>
+<body>
+    
+    <h1>이벤트_폼</h1>
+
+    <input type="text" name="memberId">
+    <button id="btn-check">체크하기</button>
+
+    <script>
+
+        const x = document.querySelector("input[name=memberId]");
+
+        x.addEventListener("change" , function(){
+            console.log('ㅊㅊㅊㅊ');
+        });
+
+        x.focus();
+
+    </script>
+
+    <hr>
+
+    <select name="food">
+        <option value="111">짜장면</option>
+        <option value="222">짬뽕</option>
+        <option value="333">탕수육</option>
+    </select>
+
+    <script>
+        const food = document.querySelector("select[name=food]");
+        food.addEventListener("change", function(){
+            console.log('이벤트ㅋㅋ');
+        });
+    </script>
+
+    <hr>
+
+    롤 <input type="checkbox" value="lol" name="game">
+    테트리스 <input type="checkbox" value="tt" name="game">
+    콜오브듀티 <input type="checkbox" value="cc" name="game">
+
+    <button id="btn01">버튼</button>
+
+    <script>
+        const btn01 = document.querySelector("#btn01");
+        btn01.addEventListener("click", function(){
+            const lol = document.querySelector("input[value=lol]");
+            lol.checked = false;
+        });
+    </script>
+
+    <script>
+
+        //버튼에 이벤트 걸기
+        const bc = document.querySelector("#btn-check");
+        bc.addEventListener("click", function(){
+
+            //인풋태그 가져와서 값 꺼내기
+            const v = document.querySelector("input[name=memberId]").value;
+
+            //꺼내온 값을 value로 하는 input 태그 가져오기
+            const input = document.querySelector(`input[value=${v}]`);
+
+            //해당 input 태그한테 check 속성 주기
+            input.checked = true;
+
+        });
+
+        
+
+        
+
+
+    </script>
+
+</body>
+</html>

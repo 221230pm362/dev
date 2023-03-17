@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동위</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        .wrap, .wrap *{
+            border: 1px solid gray;
+            color : gray;
+            display: block;
+            padding: 5px;
+            margin:15px;
+        }
+
+        h3{
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>동위</h1>
+
+    <h3>동위 메소드 : 동위(형제) 요소들 선택</h3>
+    <br>
+    <div class="wrap">
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+
+    <script>
+
+        /*
+            siblings()
+            siblings("선택자")
+            next()
+            prev()
+            nextAll()
+            prevAll()
+            nextUntil("선택자")
+        */
+
+        const temp = {
+            color : 'red' ,
+            backgroundColor : 'blue' ,
+            border : '3px solid green' ,
+        };
+
+        $('h2').nextUntil('p').css(temp);
+            // .css("color" , "red")
+            // .css("backgroundColor",'blue')
+            // .css("border" , "3px solid green")
+            // ;
+
+
+    </script>
+
+</body>
+</html>

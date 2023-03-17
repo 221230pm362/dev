@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        div{
+            border: 1px solid blue;
+            background-color: purple;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>애니메이션</h1>
+
+    <pre>
+        show / hide / toggle
+        fadeIn / fadeOut / fadeToggle
+        slideDown / slideUp / slideToggle
+    </pre>
+    
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="toggle">toggle</button>
+    <br>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeOut">fadeOut</button>
+    <button id="fadeToggle">fadeToggle</button>
+    <br>
+    <button id="slideDown">slideDown</button>
+    <button id="slideUp">slideUp</button>
+    <button id="slideToggle">slideToggle</button>
+
+
+    
+    <div id="target">얖</div>
+    
+    <script>
+
+        $("#hide").click(function(){
+            $('#target').hide(3000);
+        });
+
+        $("#show").click(function(){
+            $('#target').show(3000);
+        });
+
+        $("#toggle").click(function(){
+            $('#target').toggle(3000);
+        });
+
+
+
+        $("#fadeIn").click(function(){
+            $('#target').fadeIn(3000);
+        });
+
+        $("#fadeOut").click(function(){
+            $('#target').fadeOut(3000);
+        });
+
+        $("#fadeToggle").click(function(){
+            $('#target').fadeToggle(3000);
+        });
+
+
+
+        $("#slideDown").click(function(){
+            $('#target').slideDown(3000);
+        });
+
+        $("#slideUp").click(function(){
+            $('#target').slideUp(3000);
+        });
+
+        $("#slideToggle").click(function(){
+            $('#target').slideToggle(3000);
+        });
+
+    </script>
+
+
+
+</body>
+</html>

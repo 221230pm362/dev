@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h1>함수(요소 추가 및 삭제)</h1>
+
+    <hr>
+
+    <h2>동적으로 생성</h2>
+    <button id="btn">요소생성</button>
+    <div id="area1">
+
+    </div>
+
+    <script>
+        $('#btn').click(function(){
+            //요소 만들고 area1에 넣기
+
+            //js 방식
+            // const a = document.createElement("h1");
+            // const b = document.createTextNode("글자ㅋㅋ");
+            // a.appendChild(b);
+
+            // const area1 = document.querySelector("#area1");
+            // area1.appendChild(a);
+
+            const elem = $('<h1>글자ㅎㅎ</h1>');
+            $("#area1").append(elem);
+
+        });
+    </script>
+
+
+    <hr>
+
+    <h2>삽입 관련 메소드</h2>
+    <pre>
+
+        $(A).append(B)
+        A 요소 내부의 뒷부분에 B 추가 (자식)
+
+        $(A).prepend(B)
+        A 요소 내부의 앞부분에 B 추가 (자식)
+
+        $(A).after(B)
+        A 요소 뒷부분에 B 추가 (형제)
+
+        $(A).before(B)
+        A 요소 앞부분에 B 추가 (형제)
+
+        --------------------------------
+
+        $(B).appendTo(A)
+        A 요소 내부의 뒷부분에 B 추가 (자식)
+
+        $(B).prependTo(A)
+        A 요소 내부의 앞부분에 B 추가 (자식)
+
+        $(B).insertAfter(A)
+        A 요소 뒷부분에 B 추가 (형제)
+
+        $(B).insertBefore(A)
+        A 요소 앞부분에 B 추가 (형제)
+
+    </pre>
+
+    <h1 id="t1"><span>A</span></h1>
+    <h1 id="t2"><span>A</span></h1>
+    <h1 id="t3"><span>A</span></h1>
+    <h1 id="t4"><span>A</span></h1>
+
+    <script>
+
+        $("#t1").append('어펜드');
+        $("#t2").prepend('프리펜드');
+        $("#t3").after('애프터');
+        $("#t4").before('비포');
+
+    </script>
+
+</body>
+</html>

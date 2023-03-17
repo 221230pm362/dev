@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h1>함수 - content</h1> 
+    <!-- 여는태그 닫는태그 사이 영역 -->
+    
+    <span id="target">
+        <a>에이태그</a>
+    </span>
+
+    <script>
+        //$('#target').text("제이쿼리로변경ㅋㅋ");
+        // $('#target').html("제이쿼리로변경ㅋㅋ22222");
+
+        $("#target").children().attr("href", "https://www.naver.com");
+
+        const result = $('#target').text();
+        console.log(result);
+
+    </script>
+
+</body>
+</html>

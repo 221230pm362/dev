@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소선택 (추가선택자)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>요소선택 (추가선택자)</h1>
+
+    <pre>
+        선택자[속성]     : 해당 속성 가진 모든 요소 선택 
+        선택자[속성=값]  : 속성 === 값 선택 
+        선택자[속성~=값] : 값 에 해당하는 속성 있으면 선택 
+        선택자[속성^=값] : 시작이 값 
+        선택자[속성$=값] : 끝 
+        선택자[속성*=값] : 포함 
+
+        :타입명 // type이 "타입명" 에 해당하는 요소를 가져옴
+        :text
+        :button
+        :checkbox
+        :file
+        :reset
+        :password
+
+        input:checked
+        option:selected
+
+        button:enabled
+        button:disabled
+    </pre>
+
+    체크박스1 <input type="checkbox">
+    체크박스2 <input type="checkbox" checked>
+    <br>
+    라디오버튼1 <input type="radio" checked>
+    라디오버튼2 <input type="radio">
+
+    <br>
+
+    <select>
+        <option value="">옵션01</option>
+        <option value="" selected>옵션02</option>
+        <option value="">옵션03</option>
+    </select>
+
+    <hr>
+
+    <button>버튼1 (사용가능)</button>
+    <button disabled>버튼2 (사용불가능)</button>
+
+    <script>
+
+        const cb = $(":checkbox:checked");
+        console.log(cb);
+
+        const r = $(":radio:checked");
+        console.log(r);
+
+        const x = $("option:selected");
+        console.log(x);
+
+        const b = $("button:disabled");
+        console.log(b);
+
+    </script>
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

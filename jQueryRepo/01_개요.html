@@ -5,18 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개요</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
     
     <h1>개요</h1>
 
     <h2>jQuery 란 ?</h2>
+    <pre>
+        자바스크립트만 이용해서 구현하기엔 복잡하고 어려운것들을
+        "존 레식" 라이브러리로 만듦
+
+        복잡한 자바스크립트 구문을 짧고 쉽게 개발 가능
+    </pre>
 
     <h2>jQuery 장점</h2>
+    <pre>
+        1. DOM 조작 쉬움
+        2. AJAX 지원
+        3. 플러그인, 오픈api 지원 
+    </pre>
 
     <h2>jQuery 라이브러리 연결 방법</h2>
+    <pre>
+        1. 파일
+        2. 링크 (CDN)
+    </pre>
 
     <h2>사용해보기</h2>
+
+    <script>
+
+        // jQuery(document).ready(함수);
+
+        // $(document).ready(함수);
+
+        // $(함수);
+
+        $(function(){
+            console.log("문서 로딩 완료됨 ~~~");
+            
+            const t = $('#target');
+            console.log(t);
+        });
+
+    </script>
+
+    <span id="target">타겟ㅋㅋ</span>
 
 </body>
 </html>

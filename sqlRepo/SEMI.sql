@@ -17,6 +17,27 @@ CREATE TABLE MEMBER(
 
 --ø¨Ω¿¿Â
 
+ROLLBACK;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

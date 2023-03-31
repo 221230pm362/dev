@@ -24,7 +24,7 @@ public class MemberListController extends HttpServlet {
 			List<MemberVo> list = ms.selectList();
 
 			req.setAttribute("voList", list);
-			req.getRequestDispatcher("/WEB-INF/views/member/list.jsp");
+			req.getRequestDispatcher("/WEB-INF/views/member/list.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

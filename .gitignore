@@ -10,3 +10,5 @@ htmlRepo/media/
 cssRepo/media/
 *.jar
 log.txt
+**/resources/img/
+**/Servers/

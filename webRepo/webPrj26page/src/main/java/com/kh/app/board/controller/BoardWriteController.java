@@ -26,6 +26,9 @@ public class BoardWriteController extends HttpServlet {
 
 		try {
 			
+			//인코딩
+			req.setCharacterEncoding("UTF-8");
+			
 			//데꺼
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");

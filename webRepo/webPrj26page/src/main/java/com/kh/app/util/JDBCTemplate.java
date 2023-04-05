@@ -18,7 +18,7 @@ public class JDBCTemplate {
 			//conn
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String id = "C##SEMI";
-			String pwd = "4321";
+			String pwd = "1234";
 			conn = DriverManager.getConnection(url, id, pwd);
 			
 			//setAutoCommit false

@@ -12,7 +12,7 @@
 	
 	<a href="/app26/board/write">게시글 작성</a>
 	<br>
-	<a href="/app26/board/list">게시글 목록</a>
+	<a href="/app26/board/list?page=1">게시글 목록</a>
 	
 
 </body>

@@ -12,3 +12,5 @@ cssRepo/media/
 log.txt
 **/resources/img/
 **/Servers/
+*.MF
+webRepo/**/.gitignore

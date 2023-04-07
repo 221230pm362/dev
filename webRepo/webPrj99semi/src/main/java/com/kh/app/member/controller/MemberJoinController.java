@@ -33,7 +33,10 @@ public class MemberJoinController extends HttpServlet {
 			String memberNick = req.getParameter("memberNick");
 			String memberProfile = req.getParameter("memberProfile");
 			String[] hobbyArr = req.getParameterValues("hobby");
-			String hobby = String.join(",", hobbyArr);
+			String hobby = "";
+			if(hobbyArr != null) {
+				hobby = String.join(",", hobbyArr);
+			}
 			
 			//데뭉
 			MemberVo vo = new MemberVo();

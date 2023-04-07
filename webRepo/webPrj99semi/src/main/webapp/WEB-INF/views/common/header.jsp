@@ -15,15 +15,24 @@
 <header>
     <div></div>
     <div id="logo-area">
-        <img width="100%" height="150px" src="${pageContext.request.contextPath}/static/img/logo.jpg" alt="로고이미지">
+        <a href="${pageContext.request.contextPath}/home">
+            <img width="100%" height="150px" src="${pageContext.request.contextPath}/static/img/logo.jpg" alt="로고이미지">
+        </a>
     </div>
     <div id="member-area">
-    	<form action="${pageContext.request.contextPath}/member/login" method="POST">
-         <input type="text" name="memberId" placeholder="아이디">
-         <input type="password" name="memberPwd" placeholder="비밀번호">
-         <input type="submit" id="login-btn" value="로그인">
-    	</form>
-        <button id="join-btn" onclick="location.href='${pageContext.request.contextPath}/member/join'">회원가입</button>
+    	<c:if test="${ empty loginMember }">
+	    	<form action="${pageContext.request.contextPath}/member/login" method="POST">
+	         <input type="text" name="memberId" placeholder="아이디">
+	         <input type="password" name="memberPwd" placeholder="비밀번호">
+	         <input type="submit" id="login-btn" value="로그인">
+	    	</form>
+	        <button id="join-btn" onclick="location.href='${pageContext.request.contextPath}/member/join'">회원가입</button>
+    	</c:if>
+    	<c:if test="${ not empty loginMember }">
+    		${ loginMember.nick } 님 환영합니다.
+    		<br>
+    		<button onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
+    	</c:if>
     </div>
 </header>
 

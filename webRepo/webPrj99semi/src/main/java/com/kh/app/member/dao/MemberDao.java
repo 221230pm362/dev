@@ -2,6 +2,7 @@ package com.kh.app.member.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kh.app.common.db.JDBCTemplate;
@@ -23,4 +24,56 @@ public class MemberDao {
 		return result;
 	}
 
-}
+	public MemberVo login(Connection conn, MemberVo vo) throws Exception {
+		
+		//SQL
+		String sql = "SELECT * FROM MEMBER WHERE ID = ? AND PWD = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getId());
+		pstmt.setString(2, vo.getPwd());
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs 
+		MemberVo loginMember = null;
+		if(rs.next()) {
+			String no = rs.getString("NO");
+			String id = rs.getString("ID");
+			String pwd = rs.getString("PWD");
+			String nick = rs.getString("NICK");
+			String profile = rs.getString("PROFILE");
+			String hobby = rs.getString("HOBBY");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			
+			loginMember = new MemberVo();
+			loginMember.setNo(no);
+			loginMember.setId(id);
+			loginMember.setPwd(pwd);
+			loginMember.setNick(nick);
+			loginMember.setProfile(profile);
+			loginMember.setHobby(hobby);
+			loginMember.setEnrollDate(enrollDate);
+			loginMember.setModifyDate(modifyDate);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return loginMember;
+	}//method
+	
+	
+	
+
+}//class
+
+
+
+
+
+
+
+
+
+
+

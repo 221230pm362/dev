@@ -2,6 +2,7 @@ package com.kh.app.member.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kh.app.common.db.JDBCTemplate;
@@ -35,6 +36,19 @@ public class MemberService {
 		
 		return result;
 	}//method
+
+	public MemberVo login(MemberVo vo) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MemberVo loginMember = dao.login(conn, vo);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return loginMember;
+	}
 
 }//class
 

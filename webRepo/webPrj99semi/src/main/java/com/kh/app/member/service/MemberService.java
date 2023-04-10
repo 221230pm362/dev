@@ -50,6 +50,35 @@ public class MemberService {
 		return loginMember;
 	}
 
+	public MemberVo edit(MemberVo vo) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		MemberVo updatedMember = null;
+		try {
+			//SQL
+			int result = dao.edit(conn , vo);
+			
+			//tx || rs
+			if(result == 1) {
+				updatedMember = dao.selectOneByNo(conn , vo.getNo());
+				if(updatedMember == null) {
+					throw new Exception();
+				}
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+			
+		}finally {
+			//close
+			JDBCTemplate.close(conn);
+		}
+		
+		return updatedMember;
+	}
+
 }//class
 
 

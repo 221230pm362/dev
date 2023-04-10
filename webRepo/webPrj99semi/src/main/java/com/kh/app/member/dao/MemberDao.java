@@ -61,6 +61,58 @@ public class MemberDao {
 		
 		return loginMember;
 	}//method
+
+	public int edit(Connection conn, MemberVo vo) throws Exception {
+		String sql = "UPDATE MEMBER SET NICK = ? , HOBBY = ? ";
+		if(vo.getPwd() != null && vo.getPwd().length() > 0) {
+			sql += ", PWD = ?";
+		}
+		sql += ", MODIFY_DATE = SYSDATE WHERE NO = ? AND STATUS = 'O'";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getNick());
+		pstmt.setString(2, vo.getHobby());
+		if(vo.getPwd() != null && vo.getPwd().length() > 0) {
+			pstmt.setString(3, vo.getPwd());
+			pstmt.setString(4, vo.getNo());
+		}else {
+			pstmt.setString(3, vo.getNo());
+		}
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	public MemberVo selectOneByNo(Connection conn, String no) throws Exception {
+		
+		String sql = "SELECT * FROM MEMBER WHERE NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		ResultSet rs = pstmt.executeQuery();
+		
+		MemberVo vo = null;
+		if(rs.next()) {
+			String id = rs.getString("ID");
+			String pwd = rs.getString("PWD");
+			String nick = rs.getString("NICK");
+			String profile = rs.getString("PROFILE");
+			String hobby = rs.getString("HOBBY");
+			
+			vo = new MemberVo();
+			vo.setNo(no);
+			vo.setId(id);
+			vo.setNick(nick);
+			vo.setProfile(profile);
+			vo.setHobby(hobby);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+	}
 	
 	
 	

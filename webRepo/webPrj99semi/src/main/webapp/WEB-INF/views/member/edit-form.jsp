@@ -47,8 +47,10 @@
                     <input type="submit" value="수정하기">
                 </div>
 
+            	<button type="button" onclick="quit();">탈퇴하기</button>
 
             </form>
+            
 
         </main>
 
@@ -76,6 +78,14 @@
             return true;
         }
         return false;
+	}
+	
+	//탈퇴
+	function quit(){
+		const result = confirm('정말로 탈퇴하실건가요?');
+		if(result){
+			location.href='${pageContext.request.contextPath}/member/quit';
+		}
 	}
 	
 </script>

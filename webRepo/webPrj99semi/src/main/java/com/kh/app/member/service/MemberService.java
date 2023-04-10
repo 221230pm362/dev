@@ -79,6 +79,25 @@ public class MemberService {
 		return updatedMember;
 	}
 
+	public int quit(String no) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//SQL
+		int result = dao.quit(conn , no);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }//class
 
 

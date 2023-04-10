@@ -113,6 +113,18 @@ public class MemberDao {
 		
 		return vo;
 	}
+
+	public int quit(Connection conn, String no) throws Exception {
+		
+		String sql = "UPDATE MEMBER SET STATUS = 'X' WHERE NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 	
 	
 	

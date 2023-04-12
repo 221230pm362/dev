@@ -1,17 +1,28 @@
 package com.kh.app.member.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
+import com.kh.app.util.file.FileUploader;
 
+@MultipartConfig(
+			maxFileSize = 1024 * 1024 * 50 ,
+			maxRequestSize = 1024 * 1024 * 50 * 2
+		)
 @WebServlet("/member/join")
 public class MemberJoinController extends HttpServlet {
 	
@@ -27,11 +38,19 @@ public class MemberJoinController extends HttpServlet {
 
 		try {
 			
+			//파일 start
+			Part f = req.getPart("memberProfile");
+			
+			//서버에 저장
+			FileUploader.saveFile();
+
+			//파일 end
+			
 			//데꺼
 			String memberId = req.getParameter("memberId");
 			String memberPwd = req.getParameter("memberPwd");
 			String memberNick = req.getParameter("memberNick");
-			String memberProfile = req.getParameter("memberProfile");
+			//String memberProfile = req.getParameter("memberProfile");
 			String[] hobbyArr = req.getParameterValues("hobby");
 			String hobby = "";
 			if(hobbyArr != null) {
@@ -43,7 +62,7 @@ public class MemberJoinController extends HttpServlet {
 			vo.setId(memberId);
 			vo.setPwd(memberPwd);
 			vo.setNick(memberNick);
-			//vo.setProfile(memberProfile);
+			vo.setProfile(changeName);
 			vo.setHobby(hobby);
 			
 			//서비스

@@ -17,7 +17,7 @@
 
         <main>
 
-            <form action="${pageContext.request.contextPath}/member/join" method="post" onsubmit="return checkValidation();">
+            <form action="${pageContext.request.contextPath}/member/join" method="post" onsubmit="return checkValidation();" enctype="multipart/form-data">
 
                 <div id="join-area">
                     <span>아이디</span>

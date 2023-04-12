@@ -18,8 +18,12 @@ header{
 #login-btn{width : 100%}
 #join-btn{width : 100%}
 
-#member-area{
+#member-area {
 	margin-top:30px;
+	display: flex;
+	flex-direction : column;
+	justify-content: center;
+	align-items: center;
 }
 
 nav{

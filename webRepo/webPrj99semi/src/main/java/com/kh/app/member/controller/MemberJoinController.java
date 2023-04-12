@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
+import com.kh.app.util.file.AttachmentVo;
 import com.kh.app.util.file.FileUploader;
 
 @MultipartConfig(
@@ -38,13 +39,10 @@ public class MemberJoinController extends HttpServlet {
 
 		try {
 			
-			//파일 start
+			//파일 처리
 			Part f = req.getPart("memberProfile");
-			
-			//서버에 저장
-			FileUploader.saveFile();
-
-			//파일 end
+			String path = req.getServletContext().getRealPath("/static/img/member/profile/");
+			AttachmentVo attachmentVo = FileUploader.saveFile(path , f);
 			
 			//데꺼
 			String memberId = req.getParameter("memberId");
@@ -62,7 +60,7 @@ public class MemberJoinController extends HttpServlet {
 			vo.setId(memberId);
 			vo.setPwd(memberPwd);
 			vo.setNick(memberNick);
-			vo.setProfile(changeName);
+			vo.setProfile(attachmentVo.getChangeName());
 			vo.setHobby(hobby);
 			
 			//서비스

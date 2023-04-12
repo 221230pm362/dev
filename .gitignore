@@ -14,3 +14,4 @@ log.txt
 **/Servers/
 *.MF
 webRepo/**/.gitignore
+webRepo/webPrj99semi/src/main/webapp/static/img/

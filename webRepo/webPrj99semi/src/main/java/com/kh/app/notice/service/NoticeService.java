@@ -40,6 +40,26 @@ public class NoticeService {
 		return list;
 	}
 
+	public int write(NoticeVo vo) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		
+		int result = dao.write(conn, vo);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }//class
 
 

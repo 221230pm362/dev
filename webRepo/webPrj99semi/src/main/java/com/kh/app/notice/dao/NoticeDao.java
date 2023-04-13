@@ -71,6 +71,20 @@ public class NoticeDao {
 		return list;
 	}
 
+	public int write(Connection conn, NoticeVo vo) throws Exception {
+		
+		//SQL
+		String sql = "INSERT INTO NOTICE (NO, TITLE, CONTENT) VALUES (SEQ_NOTICE_NO.NEXTVAL, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getTitle());
+		pstmt.setString(2, vo.getContent());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }//class
 
 

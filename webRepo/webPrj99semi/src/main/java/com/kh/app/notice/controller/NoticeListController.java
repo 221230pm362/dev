@@ -27,7 +27,9 @@ public class NoticeListController extends HttpServlet {
 			
 			//데이터 준비
 			int listCount = ns.selectCnt();
-			int currentPage = Integer.parseInt(req.getParameter("page"));
+			String page = req.getParameter("page");
+			if(page == null) page = "1";
+			int currentPage = Integer.parseInt(page);
 			int pageLimit = 5;
 			int boardLimit = 10;
 			PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);

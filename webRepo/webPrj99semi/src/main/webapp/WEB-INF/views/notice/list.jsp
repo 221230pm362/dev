@@ -36,6 +36,13 @@
 		display: flex;
 		justify-content: space-evenly; 
 	}
+	
+	#write-btn-area{
+		width: 500px;
+		margin: auto;
+		display: flex;
+		flex-direction: row-reverse;
+	}
 
 </style>
 </head>
@@ -48,6 +55,12 @@
 		<main>
 		
 			<h1 align="center">공지사항 목록</h1>
+			
+			<c:if test="${ loginMember.id == 'ADMIN' }">
+				<div id="write-btn-area">
+					<a class="btn btn-primary" href="${pageContext.request.contextPath}/notice/write">작성하기</a>
+				</div>
+			</c:if>
 			
 			<table>
 

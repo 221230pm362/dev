@@ -85,6 +85,53 @@ public class NoticeDao {
 		return result;
 	}
 
+	public NoticeVo selectNoticeOneByNo(Connection conn, String no) throws Exception {
+		
+		//SQL
+		String sql = "SELECT * FROM NOTICE WHERE NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs
+		NoticeVo vo = null;
+		if(rs.next()) {
+			String title = rs.getString("TITLE");
+			String content = rs.getString("CONTENT");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String status = rs.getString("STATUS");
+			String hit = rs.getString("HIT");
+			
+			vo = new NoticeVo();
+			vo.setNo(no);
+			vo.setTitle(title);
+			vo.setContent(content);
+			vo.setEnrollDate(enrollDate);
+			vo.setModifyDate(modifyDate);
+			vo.setStatus(status);
+			vo.setHit(hit);
+		}
+		
+		//close
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+	}
+
+	public int increaseHit(Connection conn, String no) throws Exception {
+		String sql = "UPDATE NOTICE SET HIT = HIT+1 WHERE NO = ? AND STATUS = 'O'";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }//class
 
 

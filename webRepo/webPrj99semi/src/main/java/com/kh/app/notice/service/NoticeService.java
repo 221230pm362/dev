@@ -60,6 +60,25 @@ public class NoticeService {
 		return result;
 	}
 
+	//공지사항 상세조회 (select + update)
+	public NoticeVo selectNoticeOneByNo(String no) throws Exception {
+		
+		NoticeVo vo = null;
+		//conn
+		try (Connection conn = JDBCTemplate.getConnection();){
+			//update
+			int result = dao.increaseHit(conn , no);
+			
+			if(result == 1) {
+				//select
+				vo = dao.selectNoticeOneByNo(conn , no);
+			}else {
+				throw new Exception();
+			}
+		}
+		return vo;
+	}
+
 }//class
 
 

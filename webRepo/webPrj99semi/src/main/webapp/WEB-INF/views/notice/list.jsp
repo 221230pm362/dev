@@ -44,6 +44,11 @@
 		flex-direction: row-reverse;
 	}
 
+	tbody > tr:hover {
+		background-color: gray;
+		cursor: pointer;
+	}
+
 </style>
 </head>
 <body>
@@ -108,6 +113,15 @@
 </html>
 
 
+<script>
+
+	const tbody = document.querySelector("tbody");
+	tbody.addEventListener("click" , function(e){
+		const no = e.target.parentNode.children[0].innerText;
+		location.href = "${pageContext.request.contextPath}/notice/detail?no=" + no;
+	});
+
+</script>
 
 
 

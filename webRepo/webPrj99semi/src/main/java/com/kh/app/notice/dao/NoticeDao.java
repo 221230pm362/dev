@@ -132,6 +132,19 @@ public class NoticeDao {
 		return result;
 	}
 
+	public int delete(Connection conn, String no) throws Exception {
+		
+		String sql = "UPDATE NOTICE SET STATUS = 'X' WHERE NO = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }//class
 
 

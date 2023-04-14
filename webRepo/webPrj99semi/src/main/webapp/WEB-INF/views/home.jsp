@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/home.js"></script>
 
 </head>
 <body>
@@ -19,6 +18,7 @@
 </body>
 </html>
 
+<script type="text/javascript" src="${root}/static/js/home.js"></script>
 
 
 

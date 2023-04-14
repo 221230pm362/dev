@@ -79,6 +79,26 @@ public class NoticeService {
 		return vo;
 	}
 
+	public int delete(String no) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//SQL
+		int result = dao.delete(conn, no);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }//class
 
 

@@ -63,26 +63,37 @@
 		justify-content: center;
 	}
 
+    #notice-area input{
+        width: 100%;
+        height: 100%;
+    }
+
+    #notice-area textarea{
+        width: 100%;
+        height: 100%;
+        resize: none;
+    }
+
 </style>
 </head>
 <body>
 
-	<div id="wrap">
-	
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+    <div id="wrap">
+
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+        <main>
 		
-		<main>
-		
-			<h1 align="center">공지사항 상세조회</h1>
+			<h1 align="center">공지사항 수정하기</h1>
 
 				<div id="notice-area">
 					<div>제목</div>
-					<div>${ vo.title }</div>
+					<div><input type="text" name="title" value="${ vo.title }"></div>
 					<div>작성일</div>
 					<div>${ vo.enrollDate }</div>
 					<div>조회수</div>
 					<div>${ vo.hit }</div>
-					<div>${ vo.content }</div>
+					<div><textarea name="content">${ vo.content }</textarea></div>
 				</div>
 
 				<c:if test="${ loginMember.id == 'ADMIN' }">
@@ -93,22 +104,8 @@
 				</c:if>
 		
 		</main>
-	
-	</div>
+
+    </div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -49,7 +49,7 @@
                     <input type="reset" value="초기화">
                     <input type="submit" value="회원가입">
                 </div>
-
+                <img id="profileThumbnail">
 
             </form>
 
@@ -59,3 +59,31 @@
 
 </body>
 </html>
+
+<script>
+
+    //파일 미리보기
+    const fileTag = document.querySelector("input[name=memberProfile]");
+
+    fileTag.addEventListener("change" , function(){
+        
+        const profileThumbnail = document.querySelector("#profileThumbnail");
+        
+        if( fileTag.files.length > 0 ){
+            
+            const fr = new FileReader();
+            fr.readAsDataURL( fileTag.files[0] );
+
+            fr.addEventListener("load" , function(event){
+                profileThumbnail.src = event.target.result;
+                profileThumbnail.width = "100";
+                profileThumbnail.height = "100";
+            });
+
+        }else{
+            profileThumbnail.src = "";
+        }
+
+    });
+
+</script>

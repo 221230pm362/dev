@@ -88,7 +88,7 @@ public class NoticeDao {
 	public NoticeVo selectNoticeOneByNo(Connection conn, String no) throws Exception {
 		
 		//SQL
-		String sql = "SELECT * FROM NOTICE WHERE NO = ? AND STATUS = 'O'";
+		String sql = "SELECT TITLE , CONTENT , TO_CHAR(ENROLL_DATE , 'YYYY-MM-DD') AS ENROLL_DATE, MODIFY_DATE, STATUS, HIT FROM NOTICE WHERE NO = ? AND STATUS = 'O'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, no);
 		ResultSet rs = pstmt.executeQuery();

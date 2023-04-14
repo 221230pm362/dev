@@ -10,6 +10,7 @@ import java.util.List;
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
 import com.kh.app.notice.dao.NoticeDao;
+import com.kh.app.notice.vo.NoticeReplyVo;
 import com.kh.app.notice.vo.NoticeVo;
 
 public class NoticeService {
@@ -104,6 +105,26 @@ public class NoticeService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		int result = dao.edit(conn, vo);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int replyWrite(NoticeReplyVo vo) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		
+		int result = dao.replyWrite(conn , vo);
 		
 		//tx || rs
 		if(result == 1) {

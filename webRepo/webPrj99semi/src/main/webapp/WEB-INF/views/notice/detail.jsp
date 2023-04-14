@@ -63,6 +63,20 @@
 		justify-content: center;
 	}
 
+	#reply-form-area {
+		width: 600px;
+		margin: auto;
+		border-left: 1px solid black;
+		border-right: 1px solid black;
+		box-sizing: border-box;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#reply-form-area > input:first-child {
+		width: 480px;
+	}
+
 </style>
 </head>
 <body>
@@ -91,6 +105,14 @@
 						<a class="btn btn-danger" href="${root}/notice/delete?no=${vo.no}">삭제하기</a>
 					</div>
 				</c:if>
+
+			<div id="reply-area">
+				<input type="hidden" name="noticeNo" value="${vo.no}">
+				<div id="reply-form-area">
+					<input type="text" name="content" placeholder="댓글을 입력하세요">
+					<input type="button" value="댓글쓰기" onclick="writeComment();">
+				</div>
+			</div>
 		
 		</main>
 	
@@ -99,7 +121,33 @@
 </body>
 </html>
 
+<script>
 
+	//댓글 작성
+	function writeComment(){
+		const comment = document.querySelector("input[name=content]").value;
+		$.ajax({
+			url : "${root}/notice/reply/write" ,
+			type : "POST" ,
+			data : {
+				noticeNo : '${vo.no}' ,
+				content : comment ,
+			} ,
+			success : (x)=>{
+				console.log(x);
+				if(x == 'ok'){
+					alert("댓글 작성 성공!");
+				}else{
+					alert("댓글 작성 실패...");
+				}
+			} ,
+			error : (x)=>{
+				console.log(x);
+			} ,
+		});
+	}
+
+</script>
 
 
 

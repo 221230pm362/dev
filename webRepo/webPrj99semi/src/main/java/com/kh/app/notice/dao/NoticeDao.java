@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
+import com.kh.app.notice.vo.NoticeReplyVo;
 import com.kh.app.notice.vo.NoticeVo;
 
 public class NoticeDao {
@@ -152,6 +153,19 @@ public class NoticeDao {
 		pstmt.setString(1, vo.getTitle());
 		pstmt.setString(2, vo.getContent());
 		pstmt.setString(3, vo.getNo());
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+
+	public int replyWrite(Connection conn, NoticeReplyVo vo) throws Exception {
+		
+		//SQL
+		String sql = "INSERT INTO NOTICE_REPLY ( NO ,NOTICE_NO ,CONTENT ,WRITER_NO ) VALUES ( SEQ_NOTICE_REPLY_NO.NEXTVAL ,? ,? ,? )";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getNoticeNo());
+		pstmt.setString(2, vo.getContent());
+		pstmt.setString(3, vo.getWriterNo());
 		int result = pstmt.executeUpdate();
 		JDBCTemplate.close(pstmt);
 		return result;

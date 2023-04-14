@@ -112,6 +112,9 @@
 					<input type="text" name="content" placeholder="댓글을 입력하세요">
 					<input type="button" value="댓글쓰기" onclick="writeComment();">
 				</div>
+				<div id="reply-list-area">
+					
+				</div>
 			</div>
 		
 		</main>
@@ -146,6 +149,34 @@
 			} ,
 		});
 	}
+
+	//댓글 불러오기
+	function loadComment(){
+		const replyListArea = document.querySelector("#reply-list-area");
+		
+		$.ajax({
+			url : '${root}/notice/reply/list' ,
+			type : "GET" ,
+			data : {
+				noticeNo : '${vo.no}'
+			} ,
+			success : function(data){
+				console.log(data);
+				//JSON 형태로 받아서, 화면에 보여주기
+			} ,
+			error : function(e){
+				console.log(e);
+			} ,
+		});
+
+
+		let str = '';
+		str += '<div>댓글내용</div><div>댓글작성자</div>';
+
+		replyListArea.innerHTML = str;
+	}
+
+	loadComment();
 
 </script>
 

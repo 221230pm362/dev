@@ -171,6 +171,40 @@ public class NoticeDao {
 		return result;
 	}
 
+	public List<NoticeReplyVo> selectReplyList(Connection conn, String noticeNo) throws Exception {
+		
+		//SQL , rs
+		String sql = "SELECT * FROM NOTICE_REPLY WHERE NOTICE_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, noticeNo);
+		ResultSet rs = pstmt.executeQuery();
+		
+		List<NoticeReplyVo> voList = new ArrayList<>(); 
+		while( rs.next() ) {
+			String no = rs.getString("NO");
+			//String noticeNo = rs.getString("NOTICE_NO");	//이미 클라한테 받음
+			String content = rs.getString("CONTENT");
+			String writerNo = rs.getString("WRITER_NO");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String status = rs.getString("STATUS");
+			
+			NoticeReplyVo vo = new NoticeReplyVo();
+			vo.setNo(no);
+			vo.setNoticeNo(noticeNo);
+			vo.setContent(content);
+			vo.setWriterNo(writerNo);
+			vo.setEnrollDate(enrollDate);
+			vo.setStatus(status);
+			
+			voList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return voList;
+	}
+
 }//class
 
 

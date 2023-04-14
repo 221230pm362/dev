@@ -139,6 +139,18 @@ public class NoticeService {
 		return result;
 	}
 
+	public List<NoticeReplyVo> selectReplyList(String noticeNo) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<NoticeReplyVo> list = dao.selectReplyList(conn, noticeNo);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+
 }//class
 
 

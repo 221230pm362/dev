@@ -145,6 +145,18 @@ public class NoticeDao {
 		return result;
 	}
 
+	public int edit(Connection conn, NoticeVo vo) throws Exception {
+		//SQL
+		String sql = "UPDATE NOTICE SET TITLE = ? , CONTENT = ? WHERE NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getTitle());
+		pstmt.setString(2, vo.getContent());
+		pstmt.setString(3, vo.getNo());
+		int result = pstmt.executeUpdate();
+		JDBCTemplate.close(pstmt);
+		return result;
+	}
+
 }//class
 
 

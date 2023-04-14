@@ -86,22 +86,21 @@
 		
 			<h1 align="center">공지사항 수정하기</h1>
 
-				<div id="notice-area">
-					<div>제목</div>
-					<div><input type="text" name="title" value="${ vo.title }"></div>
-					<div>작성일</div>
-					<div>${ vo.enrollDate }</div>
-					<div>조회수</div>
-					<div>${ vo.hit }</div>
-					<div><textarea name="content">${ vo.content }</textarea></div>
-				</div>
-
-				<c:if test="${ loginMember.id == 'ADMIN' }">
-					<div id="notice-btn-area">
-						<a class="btn btn-warning" href="${root}/notice/edit?no=${vo.no}">수정하기</a>
-						<a class="btn btn-danger" href="${root}/notice/delete?no=${vo.no}">삭제하기</a>
-					</div>
-				</c:if>
+            <form action="${root}/notice/edit?no=${vo.no}" method="POST">
+                <div id="notice-area">
+                    <div>제목</div>
+                    <div><input type="text" name="title" value="${ vo.title }"></div>
+                    <div>작성일</div>
+                    <div>${ vo.enrollDate }</div>
+                    <div>조회수</div>
+                    <div>${ vo.hit }</div>
+                    <div><textarea name="content">${ vo.content }</textarea></div>
+                </div>
+    
+                <div id="notice-btn-area">
+                    <input type="submit" class="btn btn-warning" value="수정하기">
+                </div>
+            </form>
 		
 		</main>
 

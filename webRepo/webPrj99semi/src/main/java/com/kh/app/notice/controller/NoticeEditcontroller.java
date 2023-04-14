@@ -54,6 +54,39 @@ public class NoticeEditcontroller extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		try {
+			
+			//데꺼
+			String no = req.getParameter("no");
+			String title = req.getParameter("title");
+			String content = req.getParameter("content");
+			
+			//데뭉
+			NoticeVo vo = new NoticeVo();
+			vo.setNo(no);
+			vo.setTitle(title);
+			vo.setContent(content);
+			
+			//서비스
+			NoticeService ns = new NoticeService();
+			int result = ns.edit(vo);
+			
+			//화면
+			if(result != 1) {
+				throw new Exception();
+			}
+			
+			req.getSession().setAttribute("alertMsg", "공지사항 수정 완료!");
+			resp.sendRedirect(req.getContextPath() + "/notice/detail?no=" + no);
+			
+		}catch(Exception e) {
+			System.out.println("[ERROR] NoticeEditController.doPost errr~~~");
+			e.printStackTrace();
+			
+			req.setAttribute("errorMsg", "notice edit err~~~");
+			req.getRequestDispatcher("/WEB-INF/views/common/error-page.jsp").forward(req, resp);
+		}
+		
 	}
 
 }//class

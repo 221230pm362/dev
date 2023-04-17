@@ -77,6 +77,17 @@
 		width: 480px;
 	}
 
+	#reply-list-area > table {
+		width: 600px;
+		box-sizing: border-box;
+		border-collapse: collapse;
+		margin: auto;
+	}
+
+	#reply-list-area > table td , #reply-list-area > table th {
+		border: 1px solid black;
+	}
+
 </style>
 </head>
 <body>
@@ -113,7 +124,18 @@
 					<input type="button" value="댓글쓰기" onclick="writeComment();">
 				</div>
 				<div id="reply-list-area">
-					
+					<table>
+						<thead>
+							<tr>
+								<th>댓글내용</th>
+								<th>작성자</th>
+								<th>작성일시</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
 				</div>
 			</div>
 		
@@ -140,6 +162,8 @@
 				console.log(x);
 				if(x == 'ok'){
 					alert("댓글 작성 성공!");
+					document.querySelector("input[name=content]").value = '';
+					loadComment();
 				}else{
 					alert("댓글 작성 실패...");
 				}
@@ -163,17 +187,26 @@
 			success : function(data){
 				console.log(data);
 				//JSON 형태로 받아서, 화면에 보여주기
+				const x = JSON.parse(data);
+				console.log(x);
+
+				const tbody = document.querySelector('#reply-list-area tbody');
+				tbody.innerHTML = "";
+				let str = "";
+				for(let i = 0; i < x.length; i++){
+					str += '<tr>';
+					str += '<td>' + x[i].content + '</td>';
+					str += '<td>' + x[i].writerNo + '</td>';
+					str += '<td>' + x[i].enrollDate + '</td>';
+					str += '</tr>';
+				}
+				tbody.innerHTML += str;
+
 			} ,
 			error : function(e){
 				console.log(e);
 			} ,
 		});
-
-
-		let str = '';
-		str += '<div>댓글내용</div><div>댓글작성자</div>';
-
-		replyListArea.innerHTML = str;
 	}
 
 	loadComment();

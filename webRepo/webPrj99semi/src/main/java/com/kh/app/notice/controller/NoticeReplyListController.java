@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.kh.app.notice.service.NoticeService;
 import com.kh.app.notice.vo.NoticeReplyVo;
 
@@ -30,9 +32,16 @@ public class NoticeReplyListController extends HttpServlet {
 			NoticeService ns = new NoticeService();
 			List<NoticeReplyVo> list = ns.selectReplyList(noticeNo);
 			
+			//자바객체를 JSON 형태의 문자열로 변환
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(list);
+			
 			//문자열 내보내기
+			resp.setCharacterEncoding("UTF-8");
 			PrintWriter out = resp.getWriter();
-			//out.write(list 를 JSON 형태로 만들기);
+			out.write(jsonStr);
+			//out.write("{\"k01\":\"v01\"}");	// {"k01":"v01"}
+			 
 			
 		}catch(Exception e) {
 			System.out.println("[ERROR] notice reply errr~~~");

@@ -31,6 +31,7 @@ public class BoardListController extends HttpServlet {
 			List<BoardVo> voList = bs.getBoardList(pv);
 			
 			//화면
+			req.setAttribute("pv", pv);
 			req.setAttribute("voList", voList);
 			req.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(req, resp);
 			

@@ -51,7 +51,7 @@
 
 <nav>
     <a href="${root}/notice/list?page=1">공지사항</a>
-    <a href="${root}/board/list">자유게시판</a>
+    <a href="${root}/board/list?page=1">자유게시판</a>
     <a href="${root}/gallery/list">갤러리</a>
     <a href="${root}/member/edit">마이페이지</a>
 </nav>

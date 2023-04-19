@@ -11,23 +11,9 @@ public class BoardVo {
 	private String status;
 	private String modifyDate;
 	private String hit;
-	public BoardVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public BoardVo(String no, String title, String content, String writerNo, String categoryNo, String enrollDate,
-			String status, String modifyDate, String hit) {
-		super();
-		this.no = no;
-		this.title = title;
-		this.content = content;
-		this.writerNo = writerNo;
-		this.categoryNo = categoryNo;
-		this.enrollDate = enrollDate;
-		this.status = status;
-		this.modifyDate = modifyDate;
-		this.hit = hit;
-	}
+	
+	private String writerName;
+	private String categoryName;
 	public String getNo() {
 		return no;
 	}
@@ -82,12 +68,45 @@ public class BoardVo {
 	public void setHit(String hit) {
 		this.hit = hit;
 	}
+	public String getWriterName() {
+		return writerName;
+	}
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public BoardVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BoardVo(String no, String title, String content, String writerNo, String categoryNo, String enrollDate,
+			String status, String modifyDate, String hit, String writerName, String categoryName) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.writerNo = writerNo;
+		this.categoryNo = categoryNo;
+		this.enrollDate = enrollDate;
+		this.status = status;
+		this.modifyDate = modifyDate;
+		this.hit = hit;
+		this.writerName = writerName;
+		this.categoryName = categoryName;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", writerNo=" + writerNo
 				+ ", categoryNo=" + categoryNo + ", enrollDate=" + enrollDate + ", status=" + status + ", modifyDate="
-				+ modifyDate + ", hit=" + hit + "]";
+				+ modifyDate + ", hit=" + hit + ", writerName=" + writerName + ", categoryName=" + categoryName + "]";
 	}
+	
+	
 	
 	
 	

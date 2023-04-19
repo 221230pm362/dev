@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.app.board.service.BoardService;
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.common.page.PageVo;
 
 @WebServlet("/board/list")
 public class BoardListController extends HttpServlet {
@@ -20,10 +21,14 @@ public class BoardListController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			BoardService bs = new BoardService();
+			
+			int cnt = bs.getBoardListCnt();
+			int page = Integer.parseInt(req.getParameter("page"));
+			PageVo pv = new PageVo(cnt, page, 5, 10);
 			
 			//서비스
-			BoardService bs = new BoardService();
-			List<BoardVo> voList = bs.getBoardList();
+			List<BoardVo> voList = bs.getBoardList(pv);
 			
 			//화면
 			req.setAttribute("voList", voList);

@@ -9,14 +9,17 @@ import java.util.List;
 
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.common.db.JDBCTemplate;
+import com.kh.app.common.page.PageVo;
 
 public class BoardDao {
 
-	public List<BoardVo> getBoardList(Connection conn) throws Exception {
+	public List<BoardVo> getBoardList(Connection conn, PageVo pv) throws Exception {
 		
 		//SQL
-		String sql = "SELECT * FROM BOARD WHERE STATUS = 'O'";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM ( SELECT B.NO , B.TITLE , B.CONTENT , B.WRITER_NO , B.CATEGORY_NO , B.ENROLL_DATE , B.STATUS , B.MODIFY_DATE , B.HIT , M.NICK , C.NAME AS CATEGORY_NAME FROM BOARD B JOIN MEMBER M ON(B.WRITER_NO = M.NO) JOIN CATEGORY C ON(B.CATEGORY_NO = C.NO) WHERE B.STATUS = 'O' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, pv.getBeginRow());
+		pstmt.setInt(2, pv.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
 		
 		//tx || rs
@@ -31,6 +34,8 @@ public class BoardDao {
 			String status = rs.getString("STATUS");
 			String modifyDate = rs.getString("MODIFY_DATE");
 			String hit = rs.getString("HIT");
+			String nick = rs.getString("NICK");
+			String categoryName = rs.getString("CATEGORY_NAME");
 			
 			BoardVo vo = new BoardVo();
 			vo.setNo(no);
@@ -42,6 +47,8 @@ public class BoardDao {
 			vo.setStatus(status);
 			vo.setModifyDate(modifyDate);
 			vo.setHit(hit);
+			vo.setWriterName(nick);
+			vo.setCategoryName(categoryName);
 			
 			voList.add(vo);
 		}
@@ -50,6 +57,25 @@ public class BoardDao {
 		JDBCTemplate.close(pstmt);
 		
 		return voList;
+	}
+
+	public int getBoardListCnt(Connection conn) throws Exception {
+		
+		//SQL
+		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs
+		int cnt = 0;
+		if(rs.next()) {
+			cnt = rs.getInt(1);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return cnt;
 	}
 
 }//class

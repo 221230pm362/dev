@@ -10,21 +10,34 @@ import java.util.List;
 import com.kh.app.board.dao.BoardDao;
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.common.db.JDBCTemplate;
+import com.kh.app.common.page.PageVo;
 
 public class BoardService {
 
 	private final BoardDao dao = new BoardDao();
 	
-	public List<BoardVo> getBoardList() throws Exception {
+	public List<BoardVo> getBoardList(PageVo pv) throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		List<BoardVo> voList = dao.getBoardList(conn);
+		List<BoardVo> voList = dao.getBoardList(conn , pv);
 		
 		//close
 		JDBCTemplate.close(conn);
 		
 		return voList;
+	}
+
+	public int getBoardListCnt() throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int cnt = dao.getBoardListCnt(conn);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return cnt;
 	}
 
 }//class

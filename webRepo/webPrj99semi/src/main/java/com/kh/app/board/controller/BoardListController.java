@@ -1,7 +1,9 @@
 package com.kh.app.board.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +23,9 @@ public class BoardListController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
+			String searchType = req.getParameter("searchType");
+			String searchValue = req.getParameter("searchValue");
+			
 			BoardService bs = new BoardService();
 			
 			int cnt = bs.getBoardListCnt();
@@ -28,9 +33,19 @@ public class BoardListController extends HttpServlet {
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			
 			//서비스
-			List<BoardVo> voList = bs.getBoardList(pv);
+			List<BoardVo> voList = null;
+			if(searchType == null || searchType.equals("")) {
+				voList = bs.getBoardList(pv);
+			}else {
+				voList = bs.getBoardList(pv, searchType, searchValue);
+			}
+			
+			Map<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchValue", searchValue);
 			
 			//화면
+			req.setAttribute("searchVo", map);
 			req.setAttribute("pv", pv);
 			req.setAttribute("voList", voList);
 			req.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(req, resp);

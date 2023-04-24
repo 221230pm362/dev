@@ -16,6 +16,7 @@ public class BoardService {
 
 	private final BoardDao dao = new BoardDao();
 	
+	//그냥 조회
 	public List<BoardVo> getBoardList(PageVo pv) throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
@@ -27,6 +28,20 @@ public class BoardService {
 		
 		return voList;
 	}
+	
+	//검색 조회
+	public List<BoardVo> getBoardList(PageVo pv , String searchType, String searchValue) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		List<BoardVo> voList = dao.getBoardList(conn , pv , searchType, searchValue);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return voList;
+	}
+	
 
 	public int getBoardListCnt() throws Exception {
 		//conn

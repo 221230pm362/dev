@@ -102,13 +102,22 @@
 </html>
 
 <script>
+	const searchType = '${searchVo.searchType}';
+	const searchValue = '${searchVo.searchValue}';
+	
 	const searchValueSelectTag = document.querySelector("select[name='searchValue']");
 	const searchValueInputTag = document.querySelector("input[name='searchValue']");
 	
-	<c:if test="${not empty searchVo.searchType}">
-		const x = document.querySelector('select > option[value="${searchVo.searchType}"]');
+	if(searchType.length > 1){
+		initSearchType();
+	}
+	
+	// 검색 타입 초기셋팅
+	function initSearchType(){
+		const x = document.querySelector('select > option[value="' + searchType + '"]');
 		x.selected = true;
-	</c:if>
+	}
+	
 	
 	//서치타입 변경 시 함수 실행
 	const searchTypeTag = document.querySelector('select[name="searchType"]');
@@ -126,14 +135,34 @@
 	//검색값 영역을 셀렉트가 보이게 (타입이 카테고리일 때)
 	function setSearchValueTagSelect(){
 		searchValueSelectTag.classList.add("active");
+		searchValueSelectTag.disabled = false;
 		searchValueInputTag.classList.remove("active");
+		searchValueInputTag.disabled = true;
+
+		searchValueInputTag.value = '';
 	}
 
 	//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
 	function setSearchValueTagInput(){
 		searchValueInputTag.classList.add("active");
+		searchValueInputTag.disabled = false;
 		searchValueSelectTag.classList.remove("active");
+		searchValueSelectTag.disabled = true;
 	}
+
+	//카테고리로 검색한 이후에 검색값이 유지되게
+	function initSearchValueSelect(){
+		if(searchType != 'category'){
+			return ;
+		}
+		const optionTag = document.querySelector("option[value='" + searchValue + "']");
+		optionTag.selected = true;
+	}
+	
+	
+	setSearchValueTag();
+	initSearchValueSelect();
+	
 </script>
 
 

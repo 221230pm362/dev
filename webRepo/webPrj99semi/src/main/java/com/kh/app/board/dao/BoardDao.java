@@ -122,10 +122,19 @@ public class BoardDao {
 		return voList;
 	}
 
-	public int getBoardListCnt(Connection conn) throws Exception {
+	public int getBoardListCnt(Connection conn, String searchType, String searchValue) throws Exception {
 		
 		//SQL
-		String sql = "SELECT COUNT(*) FROM BOARD WHERE STATUS = 'O'";
+		String sql = "SELECT COUNT(*) FROM ( SELECT B.NO ,B.TITLE ,B.CONTENT ,B.WRITER_NO ,B.CATEGORY_NO ,B.ENROLL_DATE ,B.STATUS ,B.MODIFY_DATE ,B.HIT ,M.NICK FROM BOARD B JOIN MEMBER M ON (B.WRITER_NO = M.NO) ) WHERE STATUS = 'O'";
+		if("title".equals(searchType)) {
+			sql += "AND TITLE LIKE '%" + searchValue + "%'";
+		}else if("writer".equals(searchType)) {
+			sql += "AND NICK LIKE '%" + searchValue + "%'";
+		}else if("category".equals(searchType)) {
+			sql += "AND CATEGORY_NO = " + searchValue;
+		}
+		
+		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		

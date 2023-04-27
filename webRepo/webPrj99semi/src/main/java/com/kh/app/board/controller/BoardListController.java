@@ -28,7 +28,7 @@ public class BoardListController extends HttpServlet {
 			
 			BoardService bs = new BoardService();
 			
-			int cnt = bs.getBoardListCnt();
+			int cnt = bs.getBoardListCnt(searchType , searchValue);
 			int page = Integer.parseInt(req.getParameter("page"));
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			

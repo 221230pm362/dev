@@ -43,11 +43,11 @@ public class BoardService {
 	}
 	
 
-	public int getBoardListCnt() throws Exception {
+	public int getBoardListCnt(String searchType, String searchValue) throws Exception {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int cnt = dao.getBoardListCnt(conn);
+		int cnt = dao.getBoardListCnt(conn , searchType , searchValue);
 		
 		//close
 		JDBCTemplate.close(conn);

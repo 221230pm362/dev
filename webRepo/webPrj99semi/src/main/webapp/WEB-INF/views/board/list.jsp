@@ -18,6 +18,9 @@
         border: 1px solid black;
     }
 
+	.searchValueElem{display: none;}
+	.active{display: inline-block;}
+
 </style>
 </head>
 <body>
@@ -38,7 +41,15 @@
             			<option value="writer">작성자</option>
             			<option value="category">카테고리</option>
             		</select>
-            		<input type="text" name="searchValue" value="${searchVo.searchValue}" placeholder="검색할내용">
+            		<input type="text" class="searchValueElem" name="searchValue" value="${searchVo.searchValue}" placeholder="검색할내용">
+					<select name="searchValue" class="searchValueElem">
+						<option value="0">없음</option>
+						<option value="10">자유</option>
+						<option value="20">코딩</option>
+						<option value="30">게임</option>
+						<option value="40">운동</option>
+						<option value="50">요리</option>
+					</select>
             		<input type="submit" value="검색">
             	</form>
             </div>
@@ -90,12 +101,39 @@
 </body>
 </html>
 
-
 <script>
+	const searchValueSelectTag = document.querySelector("select[name='searchValue']");
+	const searchValueInputTag = document.querySelector("input[name='searchValue']");
 	
-	const x = document.querySelector('select > option[value="${searchVo.searchType}"]');
-	x.selected = true;
+	<c:if test="${not empty searchVo.searchType}">
+		const x = document.querySelector('select > option[value="${searchVo.searchType}"]');
+		x.selected = true;
+	</c:if>
+	
+	//서치타입 변경 시 함수 실행
+	const searchTypeTag = document.querySelector('select[name="searchType"]');
+	searchTypeTag.addEventListener("change" , setSearchValueTag);
 
+	function setSearchValueTag(){
+		const searchType = searchTypeTag.value;
+		if(searchType == 'category'){
+			setSearchValueTagSelect();
+		}else{
+			setSearchValueTagInput();
+		}
+	}
+
+	//검색값 영역을 셀렉트가 보이게 (타입이 카테고리일 때)
+	function setSearchValueTagSelect(){
+		searchValueSelectTag.classList.add("active");
+		searchValueInputTag.classList.remove("active");
+	}
+
+	//검색값 영역을 인풋이 보이게 (타입이 카테고리가 아닐 때)
+	function setSearchValueTagInput(){
+		searchValueInputTag.classList.add("active");
+		searchValueSelectTag.classList.remove("active");
+	}
 </script>
 
 

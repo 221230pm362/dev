@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.kh.app.board.dao.BoardDao;
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
 
@@ -53,6 +54,39 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		
 		return cnt;
+	}
+
+	public int write(BoardVo bvo) throws Exception {
+		
+		// 커넥션
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = dao.write(conn , bvo);
+		
+		// tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		// close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public List<CategoryVo> getCategoryList() throws Exception {
+		
+		// 커넥션
+		Connection conn = JDBCTemplate.getConnection();
+
+		List<CategoryVo> cvoList = dao.getCategoryList(conn);
+		
+		// close
+		JDBCTemplate.close(conn);
+		
+		return cvoList;
 	}
 
 }//class

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.app.board.vo.BoardVo;
+import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
 
@@ -148,6 +149,47 @@ public class BoardDao {
 		JDBCTemplate.close(pstmt);
 		
 		return cnt;
+	}
+
+	public int write(Connection conn, BoardVo bvo) throws Exception {
+		// SQL
+		String sql = "INSERT INTO BOARD ( NO ,TITLE ,CONTENT ,WRITER_NO ,CATEGORY_NO ) VALUES ( SEQ_BOARD_NO.NEXTVAL , ? , ? , ? , ? )";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bvo.getTitle());
+		pstmt.setString(2, bvo.getContent());
+		pstmt.setString(3, bvo.getWriterNo());
+		pstmt.setString(4, bvo.getCategoryNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	public List<CategoryVo> getCategoryList(Connection conn) throws Exception {
+		
+		// SQL
+		String sql = "SELECT * FROM CATEGORY";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		// tx || rs
+		List<CategoryVo> cvoList = new ArrayList<>();
+		while(rs.next()) {
+			String no = rs.getString("NO");
+			String name = rs.getString("NAME");
+			
+			CategoryVo vo = new CategoryVo();
+			vo.setNo(no);
+			vo.setName(name);
+			
+			cvoList.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return cvoList;
 	}
 
 }//class

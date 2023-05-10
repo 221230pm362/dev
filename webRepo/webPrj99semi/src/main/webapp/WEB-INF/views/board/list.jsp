@@ -20,6 +20,13 @@
 
 	.searchValueElem{display: none;}
 	.active{display: inline-block;}
+	
+	#write-btn-area{
+		display : flex;
+		flex-direction: row-reverse;
+		width:600px;
+		margin:auto;
+	}
 
 </style>
 </head>
@@ -53,6 +60,13 @@
             		<input type="submit" value="검색">
             	</form>
             </div>
+            
+            <c:if test="${ not empty loginMember }">
+	            <div id="write-btn-area">
+		            <a href="${root}/board/write" class="btn btn-secondary">글쓰기</a>
+	            </div>
+            </c:if>
+            
 
             <table>
                 <thead>

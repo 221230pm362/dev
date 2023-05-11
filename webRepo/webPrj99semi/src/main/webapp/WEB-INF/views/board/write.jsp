@@ -29,7 +29,7 @@
 		<main>
 			<h1>게시글 작성</h1>
 			
-			<form action="${root}/board/write" method="post">
+			<form action="${root}/board/write" method="post" enctype="multipart/form-data">
 				<div id="write-area">
 					<span>제목</span>
 					<input type="text" name="title">
@@ -41,6 +41,10 @@
 					</select>
 					<span>내용</span>
 					<textarea name="content"></textarea>
+					<span>첨부파일</span>
+					<div>
+						<input type="file" multiple name="f">
+					</div>
 				</div>
 				<input type="submit" value="작성하기">
 			</form>

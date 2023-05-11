@@ -12,6 +12,7 @@ import com.kh.app.board.vo.BoardVo;
 import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
+import com.kh.app.util.file.AttachmentVo;
 
 public class BoardService {
 
@@ -56,15 +57,19 @@ public class BoardService {
 		return cnt;
 	}
 
-	public int write(BoardVo bvo) throws Exception {
+	public int write(BoardVo bvo, List<AttachmentVo> attVoList) throws Exception {
 		
 		// 커넥션
 		Connection conn = JDBCTemplate.getConnection();
 
 		int result = dao.write(conn , bvo);
+		int result2 = 1;
+		if(attVoList.size() > 0) {
+			result2 = dao.insertAttachment(conn , attVoList);
+		}
 		
 		// tx || rs
-		if(result == 1) {
+		if(result == 1 && result2 > 0) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);

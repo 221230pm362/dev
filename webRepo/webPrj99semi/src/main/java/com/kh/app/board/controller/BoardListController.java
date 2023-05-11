@@ -29,7 +29,11 @@ public class BoardListController extends HttpServlet {
 			BoardService bs = new BoardService();
 			
 			int cnt = bs.getBoardListCnt(searchType , searchValue);
-			int page = Integer.parseInt(req.getParameter("page"));
+			String page_ = req.getParameter("page");
+			if(page_ == null) {
+				page_ = "1";
+			}
+			int page = Integer.parseInt(page_);
 			PageVo pv = new PageVo(cnt, page, 5, 10);
 			
 			//서비스

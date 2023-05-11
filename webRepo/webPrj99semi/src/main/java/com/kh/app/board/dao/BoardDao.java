@@ -11,6 +11,7 @@ import com.kh.app.board.vo.BoardVo;
 import com.kh.app.board.vo.CategoryVo;
 import com.kh.app.common.db.JDBCTemplate;
 import com.kh.app.common.page.PageVo;
+import com.kh.app.util.file.AttachmentVo;
 
 public class BoardDao {
 
@@ -190,6 +191,24 @@ public class BoardDao {
 		JDBCTemplate.close(pstmt);
 		
 		return cvoList;
+	}
+
+	public int insertAttachment(Connection conn, List<AttachmentVo> attVoList) throws Exception {
+		
+		String sql = "INSERT ALL";
+		for(AttachmentVo vo : attVoList) {
+			sql += " INTO ATTACHMENT ( NO ,BNO ,ORIGIN_NAME ,CHANGE_NAME ) VALUES ( (SELECT GET_ATTACHMENT_SEQ FROM DUAL) , SEQ_BOARD_NO.CURRVAL , '" + vo.getOriginName() +"' , '" + vo.getChangeName() +"' )";
+		}
+		sql += " SELECT 1 FROM DUAL";
+		
+		System.out.println(sql);
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
 	}
 
 }//class

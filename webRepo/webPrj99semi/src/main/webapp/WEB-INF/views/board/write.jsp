@@ -11,11 +11,15 @@
 		width: 600px;
 		display: grid;
 		grid-template-columns: 1fr 3fr 1fr 1fr;
-		grid-template-rows: 30px 570px;
+		grid-template-rows: 30px 470px 100px;
 	}
 
 	#write-area > textarea {
 		grid-column: span 3;
+	}
+
+	#write-area > label > input {
+		display: none;
 	}
 
 </style>
@@ -41,9 +45,12 @@
 					</select>
 					<span>내용</span>
 					<textarea name="content"></textarea>
-					<span>첨부파일</span>
-					<div>
+					<label>
+						첨부파일
 						<input type="file" multiple name="f">
+					</label>
+					<div id="preview-area">
+						
 					</div>
 				</div>
 				<input type="submit" value="작성하기">
@@ -52,6 +59,39 @@
 		</main>
 		
 	</div>
+
+	<script>
+
+		//미리보기
+		const fileTag = document.querySelector("input[type=file]");
+		const previewArea = document.querySelector("#preview-area");
+		
+
+		fileTag.onchange = function(e){
+			
+			if(fileTag.files.length == 0){		//취소누른상태
+				previewArea.innerHTML = '';
+				return;
+			}
+
+			for(let i = 0 ; i < fileTag.files.length; i++){
+				const fr = new FileReader();
+				fr.readAsDataURL(fileTag.files[i]);
+	
+				fr.onload = function(e){
+					const imgTag = document.createElement('img');
+					imgTag.src = e.target.result;
+					imgTag.alt = "미리보기이미지사진";
+					imgTag.width = 100;
+					imgTag.height = 100;
+					previewArea.appendChild(imgTag);
+				};
+			}
+
+
+		};
+
+	</script>
 
 </body>
 </html>

@@ -211,6 +211,98 @@ public class BoardDao {
 		return result;
 	}
 
+	public BoardVo getBoardByNo(Connection conn, String bno) throws Exception {
+		
+		//SQL (DAO)
+		String sql = "SELECT B.NO ,B.TITLE ,B.CONTENT ,B.WRITER_NO ,B.CATEGORY_NO ,B.ENROLL_DATE ,B.STATUS ,B.MODIFY_DATE ,B.HIT ,C.NAME FROM BOARD B JOIN CATEGORY C ON (B.CATEGORY_NO = C.NO) WHERE B.NO = ? AND B.STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//tx || rs
+		BoardVo vo = null;
+		if(rs.next()) {
+			String no = rs.getString("NO");
+			String title = rs.getString("TITLE");
+			String content = rs.getString("CONTENT");
+			String writerNo = rs.getString("WRITER_NO");
+			String categoryNo = rs.getString("CATEGORY_NO");
+			String categoryName = rs.getString("NAME");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String status = rs.getString("STATUS");
+			String modifyDate = rs.getString("MODIFY_DATE");
+			String hit = rs.getString("HIT");
+			
+			vo = new BoardVo();
+			vo.setNo(no);
+			vo.setTitle(title);
+			vo.setContent(content);
+			vo.setWriterNo(writerNo);
+			vo.setCategoryNo(categoryNo);
+			vo.setCategoryName(categoryName);
+			vo.setEnrollDate(enrollDate);
+			vo.setStatus(status);
+			vo.setModifyDate(modifyDate);
+			vo.setHit(hit);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return vo;
+	}
+	
+	//첨부파일 목록 조회
+	// SELECT * FROM ATTACHMENT WHERE BNO = ? AND STATUS = 'O'
+	public List<AttachmentVo> getAttachmentList(Connection conn , String bno) throws Exception {
+		
+		//SQL
+		String sql = "SELECT * FROM ATTACHMENT WHERE BNO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		//rs
+		List<AttachmentVo> list = new ArrayList<>();
+		while(rs.next()) {
+			String no = rs.getString("NO");
+			String originName = rs.getString("ORIGIN_NAME");
+			String changeName = rs.getString("CHANGE_NAME");
+			String enrollDate = rs.getString("ENROLL_DATE");
+			String status = rs.getString("STATUS");
+			
+			AttachmentVo vo = new AttachmentVo();
+			vo.setNo(no);
+			vo.setOriginName(originName);
+			vo.setChangeName(changeName);
+			vo.setEnrollDate(enrollDate);
+			vo.setStatus(status);
+			
+			list.add(vo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return list;
+	}
+	
+	//조회수 증가
+	public int increaseHit(Connection conn , String bno) throws Exception {
+		
+		//SQL
+		String sql = "UPDATE BOARD SET HIT = HIT+1 WHERE NO = ? AND STATUS = 'O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, bno);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+	
+	
+
 }//class
 
 

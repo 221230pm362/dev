@@ -27,6 +27,11 @@
 		width:600px;
 		margin:auto;
 	}
+	
+	tbody > tr:hover{
+		background-color: gray;
+		cursor : pointer;
+	}
 
 </style>
 </head>
@@ -176,6 +181,18 @@
 	
 	setSearchValueTag();
 	initSearchValueSelect();
+
+
+
+	//테이블 행 클릭시, 상세조회
+	const tbody = document.querySelector('tbody');
+	tbody.addEventListener('click' , (event)=>{
+		//글번호 가져와서
+		const bno = event.target.parentNode.children[0].innerText;
+
+		//요청 보내기
+		location.href = '${root}/board/detail?bno=' + bno;
+	});
 	
 </script>
 

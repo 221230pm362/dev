@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.app.board.dao.BoardDao;
 import com.kh.app.board.vo.BoardVo;
@@ -92,6 +94,31 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		
 		return cvoList;
+	}
+
+	public Map<String , Object> getBoardByNo(String bno) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.increaseHit(conn, bno);
+		if(result != 1) {
+			JDBCTemplate.rollback(conn);
+			throw new Exception("조회수 증가 쿼리문 실행 실패");
+		}
+		BoardVo vo = dao.getBoardByNo(conn, bno);
+		List<AttachmentVo> attList = dao.getAttachmentList(conn, bno);
+		
+		Map<String , Object> map = new HashMap<>();
+		map.put("vo", vo);
+		map.put("attList", attList);
+		
+		JDBCTemplate.commit(conn);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return map;
 	}
 
 }//class

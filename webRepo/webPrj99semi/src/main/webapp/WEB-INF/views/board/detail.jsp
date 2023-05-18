@@ -32,6 +32,11 @@
 		
 		<main>
 			<h1>게시글 상세조회</h1>
+
+			<div id="btn-area">
+				<button class="btn btn-warning btn-sm" onclick="edit();">수정</button>
+				<button class="btn btn-danger btn-sm" onclick="del();">삭제</button>
+			</div>
 			
 			<form action="${root}/board/write" method="post" enctype="multipart/form-data">
 				<div id="write-area">
@@ -52,6 +57,7 @@
 				</div>
 				<input type="submit" value="작성하기">
 			</form>
+
 			
 		</main>
 		
@@ -87,8 +93,26 @@
 
 
 		};
+		
+		//게시글 삭제 요청
+		function del(){
+			const result = confirm("진짜 삭제 ??");
+			if(!result){
+				return;
+			}
+			location.href = '${root}/board/del?no=' + '${vo.no}';
+		}
 
 	</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+

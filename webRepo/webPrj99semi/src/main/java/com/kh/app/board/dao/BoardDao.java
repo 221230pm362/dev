@@ -300,6 +300,20 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int delete(Connection conn, BoardVo vo) throws Exception {
+		
+		//SQL
+		String sql = "UPDATE BOARD SET STATUS = 'X' WHERE NO = ? AND WRITER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getNo());
+		pstmt.setString(2, vo.getWriterNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 	
 	
 

@@ -314,6 +314,22 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int edit(Connection conn, BoardVo vo) throws Exception {
+		
+		//SQL
+		String sql = "UPDATE BOARD SET TITLE = ? , CONTENT = ? , MODIFY_DATE = SYSDATE WHERE NO = ? AND WRITER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getTitle());
+		pstmt.setString(2, vo.getContent());
+		pstmt.setString(3, vo.getNo());
+		pstmt.setString(4, vo.getWriterNo());
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 	
 	
 

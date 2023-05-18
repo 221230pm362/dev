@@ -3,6 +3,7 @@ package com.kh.app.board.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -126,6 +127,26 @@ public class BoardService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		int result = dao.delete(conn , vo);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int edit(BoardVo vo) throws Exception {
+		
+		//커넥션
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.edit(conn , vo);
 		
 		//tx || rs
 		if(result == 1) {

@@ -38,14 +38,15 @@
 				<button class="btn btn-danger btn-sm" onclick="del();">삭제</button>
 			</div>
 			
-			<form action="${root}/board/write" method="post" enctype="multipart/form-data">
+			<form action="${root}/board/edit" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${vo.no}">
 				<div id="write-area">
 					<span>제목</span>
-					<input type="text" name="title" value="${vo.title}">
+					<input type="text" name="title" value="${vo.title}" readonly>
 					<span>카테고리</span>
 					<div>${vo.categoryName}</div>
 					<span>내용</span>
-					<textarea name="content">${vo.content}</textarea>
+					<textarea readonly name="content">${vo.content}</textarea>
 					<label>
 						첨부파일
 					</label>
@@ -55,7 +56,7 @@
 						</c:forEach>
 					</div>
 				</div>
-				<input type="submit" value="작성하기">
+				<input type="submit" value="수정하기">
 			</form>
 
 			
@@ -101,6 +102,12 @@
 				return;
 			}
 			location.href = '${root}/board/del?no=' + '${vo.no}';
+		}
+
+		//게시글 수정
+		function edit(){
+			document.querySelector('input[name=title]').readOnly = false;
+			document.querySelector('textarea').readOnly = false;
 		}
 
 	</script>

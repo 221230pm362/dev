@@ -15,3 +15,4 @@ log.txt
 *.MF
 webRepo/**/.gitignore
 webRepo/webPrj99semi/src/main/webapp/static/img/
+webRepo/webPrj34summernote/src/main/webapp/static/img/

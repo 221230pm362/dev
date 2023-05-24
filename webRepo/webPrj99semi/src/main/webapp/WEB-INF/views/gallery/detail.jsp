@@ -28,6 +28,13 @@
 			>
 			
 			<p>${vo.content}</p>
+			
+			<hr>
+			
+			<c:if test="${vo.writerNo eq loginMember.no }">
+				<a class="btn btn-warning" href="${root}/gallery/edit?no=${vo.no}">수정</a>
+				<a class="btn btn-danger" href="${root}/gallery/del?no=${vo.no}">삭제</a>
+			</c:if>
 		
 		</main>
 		
@@ -35,3 +42,19 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

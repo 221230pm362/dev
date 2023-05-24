@@ -32,7 +32,7 @@ public class GalleryDao {
 	public List<GalleryVo> getgalleryList(Connection conn) throws Exception {
 		
 		// SQL
-		String sql = "SELECT NO ,TITLE ,CONTENT ,WRITER_NO ,ORIGIN_NAME ,CHANGE_NAME ,ENROLL_DATE ,STATUS ,HIT FROM GALLERY ORDER BY NO DESC";
+		String sql = "SELECT NO ,TITLE ,CONTENT ,WRITER_NO ,ORIGIN_NAME ,CHANGE_NAME ,ENROLL_DATE ,STATUS ,HIT FROM GALLERY WHERE STATUS = 'O' ORDER BY NO DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -106,6 +106,28 @@ public class GalleryDao {
 		
 		return vo;
 	}
+
+	public int del(Connection conn, String no) throws Exception {
+		//SQL
+		String sql = "UPDATE GALLERY SET STATUS = 'X' WHERE NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 	
 
 }
+
+
+
+
+
+
+
+
+
+

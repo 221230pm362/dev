@@ -63,6 +63,27 @@ public class GalleryService {
 		return vo;
 	}
 
+	public int del(String no) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		GalleryDao dao = new GalleryDao();
+		int result = dao.del(conn, no);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }//class
 
 

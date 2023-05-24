@@ -1,5 +1,6 @@
 package com.kh.app.gallery.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;

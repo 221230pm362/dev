@@ -26,6 +26,46 @@ public class AdminMemberService {
 		
 		return voList;
 	}
+
+	public int restrainMember(String no) throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		AdminMemberDao dao = new AdminMemberDao();
+		int result = dao.restrainMember(conn , no);
+		
+		//tx || rs
+		if(result == 1) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int restrainMembers(String[] noArr) throws Exception {
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		AdminMemberDao dao = new AdminMemberDao();
+		int result = dao.restrainMembers(conn, noArr);
+		
+		//tx || rs
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		//close
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 	
 	
 

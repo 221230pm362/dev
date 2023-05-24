@@ -52,4 +52,38 @@ public class AdminMemberDao {
 		return voList;
 	}
 
+	public int restrainMember(Connection conn, String no) throws Exception {
+		//SQL
+		String sql = "UPDATE MEMBER SET STATUS = 'S' WHERE NO = ? AND STATUS != 'X'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, no);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
+	public int restrainMembers(Connection conn, String[] noArr) throws Exception {
+		
+		String str = String.join(",", noArr);
+		
+		//SQL
+		String sql = "UPDATE MEMBER SET STATUS = 'S' WHERE NO IN (" + str +")";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+

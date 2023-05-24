@@ -118,6 +118,33 @@ public class GalleryDao {
 		
 		return result;
 	}
+
+	public int edit(Connection conn, GalleryVo vo) throws Exception {
+		
+		//SQL
+		String sql = "";
+		sql = "UPDATE GALLERY SET TITLE = ? , CONTENT = ? WHERE NO = ? AND STATUS = 'O'";
+		if(vo.getChangeName() != null) {
+			sql = "UPDATE GALLERY SET TITLE = ? , CONTENT = ? , ORIGIN_NAME = ? , CHANGE_NAME = ? WHERE NO = ? AND STATUS = 'O'";
+		}
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, vo.getTitle());
+		pstmt.setString(2, vo.getContent());
+		pstmt.setString(3, vo.getNo());
+		
+		if(vo.getChangeName() != null) {
+			pstmt.setString(3, vo.getOriginName());
+			pstmt.setString(4, vo.getChangeName());
+			pstmt.setString(5, vo.getNo());
+		}
+		
+		int result = pstmt.executeUpdate();
+		
+		JDBCTemplate.close(pstmt);
+		
+		return result;
+	}
 	
 
 }

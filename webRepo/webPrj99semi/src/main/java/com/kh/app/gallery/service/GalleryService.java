@@ -12,13 +12,14 @@ import com.kh.app.gallery.dao.GalleryDao;
 import com.kh.app.gallery.vo.GalleryVo;
 
 public class GalleryService {
+	
+	private final GalleryDao dao = new GalleryDao();
 
 	public int write(GalleryVo gvo) throws Exception {
 		
 		// conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		GalleryDao dao = new GalleryDao();
 		int result = dao.write(conn , gvo);
 		
 		// tx || rs
@@ -39,7 +40,6 @@ public class GalleryService {
 		// conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		GalleryDao dao = new GalleryDao();
 		List<GalleryVo> voList = dao.getgalleryList(conn);
 		
 		// close
@@ -54,7 +54,6 @@ public class GalleryService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		
-		GalleryDao dao = new GalleryDao();
 		GalleryVo vo = dao.getGalleryByNo(conn , no);
 		
 		//close
@@ -68,7 +67,6 @@ public class GalleryService {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		GalleryDao dao = new GalleryDao();
 		int result = dao.del(conn, no);
 		
 		//tx || rs
@@ -88,7 +86,6 @@ public class GalleryService {
 		//conn
 		Connection conn = JDBCTemplate.getConnection();
 		
-		GalleryDao dao = new GalleryDao();
 		int result = dao.edit(conn , vo);
 		
 		//tx || rs
@@ -102,6 +99,19 @@ public class GalleryService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+	}
+
+	public GalleryVo getGalleryRecent() throws Exception {
+		
+		//conn
+		Connection conn = JDBCTemplate.getConnection();
+		
+		GalleryVo vo = dao.getGalleryRecent(conn);
+		
+		//close
+		JDBCTemplate.close(conn);
+		
+		return vo;
 	}
 
 }//class

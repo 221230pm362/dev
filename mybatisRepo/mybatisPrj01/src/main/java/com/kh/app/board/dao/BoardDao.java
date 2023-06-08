@@ -26,6 +26,14 @@ public class BoardDao {
 		return ss.selectOne("board.getBoardByNo" , no);
 	}
 
+	public int delete(SqlSession ss, String no) {
+		return ss.delete("board.delete" , no);
+	}
+
+	public int edit(SqlSession ss, BoardVo vo) {
+		return ss.update("board.edit" , vo);
+	}
+
 }
 
 

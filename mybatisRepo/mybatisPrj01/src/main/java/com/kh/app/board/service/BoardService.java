@@ -57,14 +57,51 @@ public class BoardService {
 		
 		BoardDao dao = new BoardDao();
 		BoardVo vo = dao.getBoardByNo(ss , no);
-		
 		// SQL
 		// tx || rs
+		
 		
 		// close
 		ss.close();
 		
 		return vo;
+	}
+
+	public int delete(String no) {
+		//conn
+		SqlSession ss = MybatisTemplate.getSqlSession();
+		
+		BoardDao dao = new BoardDao();
+		int result = dao.delete(ss , no);
+		//SQL
+		//tx || rs
+		if(result == 1) {
+			ss.commit();
+		}else {
+			ss.rollback();
+		}
+		
+		//close
+		ss.close();
+		
+		return result;
+	}
+
+	public int edit(BoardVo vo) {
+		SqlSession ss = MybatisTemplate.getSqlSession();
+		
+		BoardDao dao = new BoardDao();
+		int result = dao.edit(ss , vo);
+		
+		if(result == 1) {
+			ss.commit();
+		}else {
+			ss.rollback();
+		}
+		
+		ss.close();
+		
+		return result;
 	}
 
 }

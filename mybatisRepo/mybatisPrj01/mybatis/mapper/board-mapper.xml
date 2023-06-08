@@ -6,6 +6,22 @@
   
 <mapper namespace="board">
 
+	<update id="edit">
+		UPDATE BOARD 
+			SET 
+				TITLE = #{title}
+				<if test="content != null and content != '' ">
+					, CONTENT = #{content}
+				</if>
+				WHERE NO = #{no} 
+	</update>
+
+	<delete id="delete">
+		DELETE FROM BOARD 
+		WHERE NO NO = #{no}
+	</delete>
+
+
 	<select id="getBoardByNo" resultType="boardVo">
 		SELECT * FROM BOARD WHERE NO = #{no}
 	</select>

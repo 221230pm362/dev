@@ -22,6 +22,10 @@ public class BoardDao {
 		return ss.insert("board.write" , vo);
 	}
 
+	public BoardVo getBoardByNo(SqlSession ss, String no) {
+		return ss.selectOne("board.getBoardByNo" , no);
+	}
+
 }
 
 

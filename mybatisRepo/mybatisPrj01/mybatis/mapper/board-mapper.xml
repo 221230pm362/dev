@@ -6,6 +6,10 @@
   
 <mapper namespace="board">
 
+	<select id="getBoardByNo" resultType="boardVo">
+		SELECT * FROM BOARD WHERE NO = #{no}
+	</select>
+
 	<insert id="write">
 		INSERT INTO BOARD
 		(

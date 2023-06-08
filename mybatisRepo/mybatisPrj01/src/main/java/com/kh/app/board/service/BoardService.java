@@ -51,6 +51,22 @@ public class BoardService {
 		return result;
 	}
 
+	public BoardVo getBoardByNo(String no) {
+		// conn
+		SqlSession ss = MybatisTemplate.getSqlSession();
+		
+		BoardDao dao = new BoardDao();
+		BoardVo vo = dao.getBoardByNo(ss , no);
+		
+		// SQL
+		// tx || rs
+		
+		// close
+		ss.close();
+		
+		return vo;
+	}
+
 }
 
 

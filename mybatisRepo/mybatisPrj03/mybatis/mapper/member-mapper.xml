@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member">
+	
+	<!-- 회원 리스트 조회 -->
+	<select id="getMemberList" resultType="MemberVo">
+		SELECT * FROM MEMBER
+		<foreach collection="array" item="x" separator="," open="WHERE NO IN (" close=")" nullable="true">
+			#{x} 
+		</foreach>
+	</select>
+	
+	<!-- 회원 한명 조회 (번호로) -->
+	<select id="getMemberByNo" resultType="MemberVo">
+		SELECT * FROM MEMBER WHERE NO = #{no}
+	</select>
+	
+	<!-- 
+	<resultMap type="MemberVo" id="abc">
+		<result column="디비칼럼명" property="객체의필드명"/>
+		<result column="ID" property="memberId"/>
+	</resultMap> 
+	-->
+	
+	<!-- 인서트 -->
+	<insert id="insertMember">
+		INSERT INTO MEMBER
+		(
+		    NO
+		    ,ID
+		    ,PWD
+		    ,NICK
+		    ,PROFILE
+		    ,HOBBY
+		)
+		VALUES
+		(
+		    SEQ_MEMBER_NO.NEXTVAL
+		    , #{id}
+		    , #{pwd}
+		    , #{nick}
+		    , #{profile}
+		    , #{hobby}
+		)
+	</insert>
+	
+	<!-- 정보 수정 (패스워드 , 닉네임) -->
+	<update id="updateMember">
+		UPDATE MEMBER
+	    	<trim prefixOverrides="," prefix="SET">
+		    	<if test="pwd != null and pwd != ''">
+			        , PWD = #{pwd}
+		    	</if>
+		        <if test="nick != null and nick != ''">
+			        , NICK = #{nick}
+		        </if>
+		        , MODIFY_DATE = SYSDATE
+	    	</trim>
+	    WHERE NO = #{no}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="quit">
+		DELETE FROM MEMBER
+		WHERE NO = #{no}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

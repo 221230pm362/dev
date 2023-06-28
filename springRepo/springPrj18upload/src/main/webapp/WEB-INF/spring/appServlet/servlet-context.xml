@@ -27,7 +27,7 @@
 	
 	<!-- @Transactional 어노테이션 활성화 -->
 	<tx:annotation-driven/>
-
+	
 	<!-- 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8" />
@@ -37,4 +37,14 @@
 	
 	
 	
+	
 </beans:beans>
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,0 @@
-[2023-06-23 21시04분56초] DEBUG : org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-[2023-06-23 21시04분56초] DEBUG : org.mybatis.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [mybatis/conf.xml]'
-[2023-06-23 21시04분56초] DEBUG : org.mybatis.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [D:\dev\springRepo\springPrj17log\target\classes\mybatis\mapper\member-mapper.xml]'
-[2023-06-23 21시04분58초] DEBUG : com.kh.app.member.controller.MemberController - 회원가입 요청 받음 ~~~
-[2023-06-23 21시04분58초] DEBUG : com.kh.app.member.controller.MemberController - 전달받은 데이터 : {id=user01, pwd=1234}

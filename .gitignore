@@ -21,3 +21,4 @@ mvnLib/
 **/target/
 *.springBeans
 **/test/
+*.log

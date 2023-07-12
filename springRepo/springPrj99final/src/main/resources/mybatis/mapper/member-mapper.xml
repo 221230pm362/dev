@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<select id="login" resultType="MemberVo">
+		SELECT
+			 NO
+			,ID
+			,PWD
+			,NICK
+			,PROFILE
+			,HOBBY
+			,STATUS
+			,ENROLL_DATE
+			,MODIFY_DATE
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
+	<insert id="join">
+		INSERT INTO MEMBER
+		(
+			NO
+			, ID
+			, PWD
+			, NICK
+		) 
+		VALUES
+		(
+			SEQ_MEMBER_NO.NEXTVAL 
+			, #{id}
+			, #{pwd}
+			, #{nick}
+		)
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

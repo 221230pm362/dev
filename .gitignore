@@ -22,3 +22,4 @@ mvnLib/
 *.springBeans
 **/test/
 *.log
+mybatisRepo/sp01/

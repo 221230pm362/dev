@@ -33,6 +33,10 @@ main {
 	margin: 0 auto;
 }
 
+nav {
+	display: flex; 
+	justify-content: space-evenly;
+}
 
 
 

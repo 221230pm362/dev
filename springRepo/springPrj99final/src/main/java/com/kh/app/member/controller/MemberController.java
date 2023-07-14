@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.app.board.controller.BoardController;
+import com.kh.app.exception.LoginFailException;
 import com.kh.app.member.service.MemberService;
 import com.kh.app.member.vo.MemberVo;
 
@@ -43,7 +45,7 @@ public class MemberController {
 		log.info("로그인 결과 : {}" , loginMember);
 		session.setAttribute("loginMember", loginMember);
 		if(loginMember == null) {
-			throw new RuntimeException("로그인 실패");
+			throw new LoginFailException();
 		}
 		return "redirect:/";
 	}

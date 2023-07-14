@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.app.exception.LoginFailException;
 import com.kh.app.member.dao.MemberDao;
 import com.kh.app.member.vo.MemberVo;
 
@@ -38,14 +39,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVo login(MemberVo vo) {
-		MemberVo loginMember = dao.login(sst, vo);
-		
-		//boolean isMatch = loginMember.getPwd().equals(vo.getPwd());
-		boolean isMatch = pwdEncoder.matches(vo.getPwd(), loginMember.getPwd());
-		
-		if(!isMatch) {
-			throw new RuntimeException("로그인 실패");
+		MemberVo loginMember = null;
+		try {
+			loginMember = dao.login(sst, vo);
+			
+			//boolean isMatch = loginMember.getPwd().equals(vo.getPwd());
+			boolean isMatch = pwdEncoder.matches(vo.getPwd(), loginMember.getPwd());
+			
+			if(!isMatch) {
+				throw new LoginFailException();
+			}
+		}catch(Exception e) {
+			throw new LoginFailException();
 		}
+		
 		return loginMember;
 	}
 

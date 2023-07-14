@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FINAL</title>
 <link rel="stylesheet" href="${root}/resources/css/header.css">
 </head>
 <body>
@@ -40,6 +40,22 @@
             </div>
         </form>
     </header>
+    <nav>
+    	<a href="${root}/board/list?p=1">자유게시판</a>
+    	<a>메뉴01</a>
+    	<a>메뉴02</a>
+    	<a>메뉴03</a>
+    </nav>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

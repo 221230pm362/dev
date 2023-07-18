@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NotFoundController {
 	
-	@RequestMapping("/**")
+	@RequestMapping("/*")
 	public void acceptNotFound() throws NotFoundException {
 		throw new NotFoundException("notFound~!");
 	}

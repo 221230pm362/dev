@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>FINAL</title>
 <link rel="stylesheet" href="${root}/resources/css/header.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
 	<header>

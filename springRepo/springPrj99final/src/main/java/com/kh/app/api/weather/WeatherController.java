@@ -1,4 +1,4 @@
-package com.kh.app.home.controller;
+package com.kh.app.api.weather;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,43 +9,23 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@Controller
-@RequiredArgsConstructor
-public class HomeController {
+@Slf4j
+@RestController
+@RequestMapping("api/weather")
+public class WeatherController {
 	
-	// 홈 페이지 (화면)
-	@RequestMapping(value = {"home" , "/"})
-	public String home(Model model ) throws Exception {
-//		
-//		//자바코드 이용해서 날씨 정보 받기
-//		
-//		//날씨 정보 담기
-//		String data = getWeatherInfo();
-//		
-//		//데이터 파싱해서 다듬기
-//		Gson gson = new Gson();
-//		Map x = gson.fromJson(data, Map.class);
-//		
-//		System.out.println(x);
-//		Map y = (Map) x.get("response");
-//		Map body = (Map) y.get("body");
-//		Map items = (Map) body.get("items");
-//		List itemArr = (List) items.get("item");
-//		System.out.println(itemArr);
-//		
-//		model.addAttribute("data" ,itemArr);
-		return "home";
-	}
-	
-	private String getWeatherInfo() throws Exception {
+	@GetMapping
+	public List getWeather() throws Exception {
+		
+		//날씨정보 얻기
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=6IPXodaWeJeJISbBFmD1zT3h4u91nQ75HnufakYGnvgsIiwT%2FUgS79FOvKU6KLuimQiq6pSANLNYpo0tFn%2Fl0g%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -72,12 +52,24 @@ public class HomeController {
         }
         rd.close();
         conn.disconnect();
-        return sb.toString();
+        
+        String jsonStr = sb.toString();
+        
+        Gson gson = new Gson();
+        Map jsonMap = gson.fromJson(jsonStr, Map.class);
+        Map response = (Map) jsonMap.get("response");
+        Map body = (Map) response.get("body");
+        Map items = (Map) body.get("items");
+        List itemList = (List) items.get("item");
+        
+        log.info(itemList.toString());
+        
+        return itemList;
 	}
+	
+	
 
-}//class
-
-
+}
 
 
 

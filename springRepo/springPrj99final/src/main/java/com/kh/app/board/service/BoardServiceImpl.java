@@ -1,6 +1,7 @@
 package com.kh.app.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class BoardServiceImpl implements BoardService {
 	private final BoardDao dao;
 
 	@Override
-	public List<BoardVo> list(PageVo pv) {
-		return dao.list(sst, pv);
+	public List<BoardVo> list(PageVo pv, Map<String, String> paramMap) {
+		return dao.list(sst, pv, paramMap);
 	}
 
 	@Override
@@ -46,8 +47,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getBoardCnt() {
-		return dao.getBoardCnt(sst);
+	public int getBoardCnt(Map<String, String> paramMap) {
+		return dao.getBoardCnt(sst, paramMap);
 	}
 	
 	

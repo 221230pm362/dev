@@ -10,6 +10,9 @@
 		SELECT COUNT(NO)
 		FROM BOARD
 		WHERE STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND ${searchType} LIKE '%${searchValue}%'
+		</if>
 	</select>
 	
 	<select id="selectBoardList" resultType="BoardVo">
@@ -25,6 +28,9 @@
 			,HIT
 		FROM BOARD
 		WHERE STATUS = 'O'
+		<if test="searchType != null and searchType != '' and searchValue != null and searchValue != ''">
+			AND ${searchType} LIKE '%${searchValue}%'
+		</if>
 	</select>
 
 </mapper>

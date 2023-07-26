@@ -1,6 +1,7 @@
 package com.kh.app.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.page.vo.PageVo;
@@ -8,7 +9,7 @@ import com.kh.app.page.vo.PageVo;
 public interface BoardService {
 	
 	//게시글 목록
-	List<BoardVo> list(PageVo pv);
+	List<BoardVo> list(PageVo pv, Map<String, String> paramMap);
 	
 	//게시글 작성
 	int write(BoardVo vo);
@@ -23,7 +24,7 @@ public interface BoardService {
 	int delete(BoardVo vo);
 	
 	//전체 게시글 갯수 조회
-	int getBoardCnt();
+	int getBoardCnt(Map<String, String> paramMap);
 
 }//class
 

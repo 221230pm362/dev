@@ -1,6 +1,8 @@
 package com.kh.app.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.app.board.service.BoardService;
 import com.kh.app.board.vo.BoardVo;
@@ -25,17 +28,18 @@ public class BoardController {
 	
 	//게시글 목록
 	@GetMapping("list")
-	public String list(int p , Model model) {
+	public String list(@RequestParam(defaultValue = "1") int p , Model model , @RequestParam Map<String, String> paramMap) {
 		
-		int listCount = service.getBoardCnt();
+		int listCount = service.getBoardCnt(paramMap);
 		int currentPage = p;
 		int pageLimit = KhConstPool.PAGE_LIMIT;
 		int boardLimit = KhConstPool.BOARD_LIMIT;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<BoardVo> voList = service.list(pv);
+		List<BoardVo> voList = service.list(pv , paramMap);
 		model.addAttribute("voList", voList);
+		model.addAttribute("paramMap", paramMap);
 		
 		return "board/list";
 	}

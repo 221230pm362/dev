@@ -24,3 +24,4 @@ mvnLib/
 *.log
 mybatisRepo/sp01/
 swyVMrepo/
+sqlRepo/warVM.sql

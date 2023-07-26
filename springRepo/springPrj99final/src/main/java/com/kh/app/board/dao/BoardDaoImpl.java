@@ -1,6 +1,7 @@
 package com.kh.app.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,9 +14,9 @@ import com.kh.app.page.vo.PageVo;
 public class BoardDaoImpl implements BoardDao {
 
 	@Override
-	public List<BoardVo> list(SqlSessionTemplate sst, PageVo pv) {
+	public List<BoardVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap) {
 		RowBounds rb = new RowBounds(pv.getOffset() , pv.getBoardLimit());
-		return sst.selectList("board.selectBoardList" , null , rb);
+		return sst.selectList("board.selectBoardList" , paramMap , rb);
 	}
 
 	@Override
@@ -44,8 +45,8 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int getBoardCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("board.getBoardCnt");
+	public int getBoardCnt(SqlSessionTemplate sst, Map<String, String> paramMap) {
+		return sst.selectOne("board.getBoardCnt", paramMap);
 	}
 	
 }

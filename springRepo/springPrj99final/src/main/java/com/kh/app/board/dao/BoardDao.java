@@ -1,6 +1,7 @@
 package com.kh.app.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -10,7 +11,7 @@ import com.kh.app.page.vo.PageVo;
 public interface BoardDao {
 	
 	//게시글 목록
-	List<BoardVo> list(SqlSessionTemplate sst, PageVo pv);
+	List<BoardVo> list(SqlSessionTemplate sst, PageVo pv, Map<String, String> paramMap);
 	
 	//게시글 작성
 	int write(SqlSessionTemplate sst, BoardVo vo);
@@ -28,7 +29,7 @@ public interface BoardDao {
 	int increaseHit(SqlSessionTemplate sst, String no);
 	
 	//전체 게시글 갯수 조회
-	int getBoardCnt(SqlSessionTemplate sst);
+	int getBoardCnt(SqlSessionTemplate sst, Map<String, String> paramMap);
 
 }
 
